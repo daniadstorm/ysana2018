@@ -21,6 +21,22 @@ $terminos_condiciones = '';
 
 //POST__________________________________________________________________________
 
+//CONTROL_______________________________________________________________________
+if (isset($_SESSION['id_tipo_usuario'])) { //si hay login
+    switch ($_SESSION['id_tipo_usuario']) {
+        default:
+        case USER:
+            header('Location: '.$ruta_inicio.'club_ysana/areapersonal/');
+            exit();
+        break;
+        case ADMIN:
+            header('Location: '.$ruta_inicio.'inicio-administrador.php');
+            exit();
+        break;
+    }
+}
+//CONTROL_______________________________________________________________________
+
 include_once('../inc/cabecera.inc.php'); //cargando cabecera
 ?>
 <script type="text/javascript">

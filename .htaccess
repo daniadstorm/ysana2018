@@ -35,6 +35,8 @@ RewriteRule ^forgot-password/$ forgot-password.php [L]
 RewriteRule ^club_ysana/$ club_ysana/index.php [L]
 RewriteRule ^club_ysana/registro/$ club_ysana/registro.php [L]
 RewriteRule ^club_ysana/areapersonal/$ club_ysana/areapersonal.php [L]
+RewriteRule ^club_ysana/areapersonal/neurologia/$ club_ysana/neurologia.php [L]
+RewriteRule ^club_ysana/areapersonal/neurologia/(.*)/$ club_ysana/articulo.php?id=$1 [L]
 
 RewriteRule ^quien-es-ysana-vida-sana/$ quienes-somos.php [L]
 

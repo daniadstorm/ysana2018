@@ -83,8 +83,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                         </ol>
                     </nav>
                 </div>
-                <div class="container-fluid">
-                    <div class="datos-personales py-5">
+                <div class="container-fluid d-flex flex-row justify-content-around align-items-center flex-wrap">
+                    <div class="datos-personales py-5 min-wd-300">
                         <form method="post">
                             <h3>Tus datos personales</h3>
                             <?php
@@ -105,22 +105,50 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             
                         </form>
                     </div>
+                    <div class="sueno">
+                        <a href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal/neurologia/sueno">
+                            <img src="<?php echo $ruta_inicio;?>img/club-ysana-picto-sueño-1.png" alt="">
+                            <h5>Obtén ahora un diagnóstico de hábitos de sueño gracias. Te damos la bienvenida a la experiencia Eficaps</h5>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="experiencia" role="tabpanel" aria-labelledby="experiencia-tab">
-            <div class="container-fluid">
-                <nav>
-                    <ol class="breadcrumb bg-white pl-0">
-                        <li class="breadcrumb-item">
-                            <a href="#">Ysana</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="#">Club Ysana</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Tu Experiencia</li>
-                    </ol>
-                </nav>
-            </div>
+                <div class="container-fluid">
+                    <nav>
+                        <ol class="breadcrumb bg-white pl-0">
+                            <li class="breadcrumb-item">
+                                <a href="#">Ysana</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Club Ysana</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Tu Experiencia</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="container-fluid">
+                    <div class="tuexperiencia py-5">
+                        <div class="cont">
+                            <a href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal/neurologia">
+                                <img src="<?php echo $ruta_inicio; ?>img/club-ysana-pictograma-usuario-mental.png" alt="">
+                                <h2>Ysana® 360º Neurología</h2>
+                            </a>
+                        </div>
+                        <!-- <div class="cont">
+                            <a href="#2">
+                                <img src="<?php echo $ruta_inicio; ?>img/club-ysana-pictograma-usuario-mujer.png" alt="">
+                                <h2>Club Ysana® 360 MUJER</h2>
+                            </a>
+                        </div>
+                        <div class="cont">
+                            <a href="#3">
+                                <img src="<?php echo $ruta_inicio; ?>img/club-ysana-pictograma-usuario-vias altas.png" alt="">
+                                <h2>Club Ysana® 360 VIAS ALTAS</h2>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1332,7 +1332,6 @@ div.botones form{
 .datos-personales form{
     margin-top: 3rem;
     max-width: 350px;
-    margin-left: 10%;
 }
 .datos-personales .inputFrm{
     padding: 5px 20px;
@@ -1359,6 +1358,72 @@ div.botones form{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+}
+.tuexperiencia {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.tuexperiencia a{
+    text-decoration: none;
+}
+.tuexperiencia .cont{
+    max-width: 350px;
+    min-width: 200px;
+    text-align: center;
+}
+.tuexperiencia .cont img{
+    max-width: 100%;
+    height: auto;
+}
+.tuexperiencia .cont h2{
+    color: var(--ysana-color-7);
+}
+.neurologia{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.neurologia a{
+    text-decoration: none;
+}
+.neurologia .cont{
+    width: 100%;
+    max-width: 150px;
+    min-width: 100px;
+    text-align: center;
+    margin: 3rem;
+    transition: .5s;
+}
+.neurologia .cont:hover{
+    transform: scale(1.1);
+}
+.neurologia .cont img{
+    max-width: 100%;
+    height: auto;
+}
+.min-wd-300{
+    min-width: 300px;
+}
+#areapersonal .sueno{
+    max-width: 500px;
+    padding: 2rem;
+    text-align: center;
+}
+#areapersonal .sueno a{
+    text-decoration: none;
+}
+#areapersonal .sueno h5{
+    color: var(--ysana-color-7);
+}
+#areapersonal .sueno img{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
 }
 /* .max-w20{
     width: 100%;
