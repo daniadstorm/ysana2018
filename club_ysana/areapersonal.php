@@ -84,7 +84,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                     </nav>
                 </div>
                 <div class="container-fluid">
-                    <div class="datos-personales">
+                    <div class="datos-personales py-5">
                         <form method="post">
                             <h3>Tus datos personales</h3>
                             <?php
