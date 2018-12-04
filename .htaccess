@@ -1,0 +1,56 @@
+#Web guia
+#https://www.bonaval.com/kb/sistemas-operativos/linux-sistemas-operativos/ejemplos-de-htaccess-que-todo-webmaster-deberia-conocer
+
+Allow from all
+Header set Access-Control-Allow-Origin: *
+Options All -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+#RewriteBase /ysana/
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+#DirectoryIndex index.php
+#RewriteRule ^(.*)$ index.php?idioma_seleccionado=$1 [L]
+#RewriteRule ^(.{0})$ es [R=301,L]
+
+#RewriteRule ^([a-zA-Z_-]+)/fichaproducto/([a-zA-Z_-]+)$ ficha-producto.php?idioma_seleccionado=$1&id=$2 [L]
+#RewriteRule ^productos_ysana/(.*)$ prueba.php?producto=$1 [L]
+
+RewriteCond %{REQUEST_URI} /+[^.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteRule ^productos_ysana/$ productos.php [L]
+RewriteRule ^productos_ysana/(.*)$ ficha-producto.php?producto=$1 [L]
+
+RewriteRule ^sala_prensa/$ prensa.php [L]
+
+RewriteRule ^login/$ login.php [L]
+RewriteRule ^registro/$ registro.php [L]
+RewriteRule ^forgot-password/$ forgot-password.php [L]
+
+
+
+RewriteRule ^club_ysana/$ club_ysana/index.php [L]
+RewriteRule ^club_ysana/registro/$ club_ysana/registro.php [L]
+RewriteRule ^club_ysana/areapersonal/$ club_ysana/areapersonal.php [L]
+
+RewriteRule ^quien-es-ysana-vida-sana/$ quienes-somos.php [L]
+
+RewriteRule ^directo_farmacia/(.*)/$ directo_farmacia/producto.php?id=$1 [L]
+RewriteRule ^experiencia/(.*)/$ experiencia/producto.php?id=$1 [L]
+
+RewriteRule ^accept-cookies-policy/$ accept_cookies_policy.php [L]
+RewriteRule ^como-configurar-cookies/$ como-configurar-cookies.php [L]
+
+RewriteRule ^politica-cookies/$ politica-cookies.php [L]
+RewriteRule ^aviso-legal/$ condiciones-uso.php [L]
+RewriteRule ^politica-privacidad/$ politica-privacidad.php [L]
+RewriteRule ^politica-ventas/$ condiciones-uso.php [L]
+
+RewriteRule ^bono/$ bono.php [L]
+
+ErrorDocument 404 "Ups, 404"
+
+</IfModule>

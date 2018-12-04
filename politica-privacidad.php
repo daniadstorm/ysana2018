@@ -1,0 +1,45 @@
+<?php
+include_once('config/config.inc.php'); //cargando archivo de configuracion
+
+$uM = load_model('usuario'); //uM userModel
+$hM = load_model('html');
+$iM = load_model('inputs');
+$sM = load_model('seo');
+
+include_once('inc/cabecera.inc.php'); //cargando cabecera
+echo $sM->add_cabecera("Complementos para una vida sana - Ysana marca de confianza"); 
+?>
+<script type="text/javascript">
+
+</script>
+
+<body>
+    <?php include_once('inc/panel_top.inc.php'); ?>
+    <?php include_once('inc/navbar_inicio.inc.php'); ?>
+
+    <?php //include_once('inc/footer.inc.php'); ?>
+    <div class="container-fluid mt-5">
+        <div>
+            <h1><?php echo $lng['footer'][104]; ?></h1>
+        </div>
+        <div class="">
+            <p><?php echo $lng['footer'][105]; ?></p>
+            
+            <ul>
+                <li><?php echo $lng['footer'][106]; ?></li>
+                <li><?php echo $lng['footer'][107]; ?></li>
+                <li><?php echo $lng['footer'][108]; ?></li>
+                <li><?php echo $lng['footer'][109]; ?></li>
+                <li><?php echo $lng['footer'][110]; ?></li>
+                <li><?php echo $lng['footer'][111]; ?></li>
+            </ul>
+            
+            <p><?php echo $lng['footer'][112]; ?></p>
+            <p><?php echo $lng['footer'][113]; ?></p>
+            <p><?php echo $lng['footer'][114]; ?></p>
+            
+        </div>
+    </div>
+        <?php include_once('inc/footer.inc.php'); ?>
+</body>
+</html>
