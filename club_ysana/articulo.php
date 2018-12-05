@@ -96,22 +96,17 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
             </div>
             <script>
                 $(document).ready(function(){
-                    $("#btn1").click(function(){
+                    $('.btnSlider').click(function(){
+                        $('button').removeClass("bg-rosa");
                         $(this).addClass("bg-rosa");
-                        $("#btn2").removeClass("bg-rosa");
-                        $("#btn3").removeClass("bg-rosa");
+                    });
+                    $("#btn1").click(function(){
                         $('.consejo').css("transform","translateX(0%)");
                     });
                     $("#btn2").click(function(){
-                        $("#btn1").removeClass("bg-rosa");
-                        $(this).addClass("bg-rosa");
-                        $("#btn3").removeClass("bg-rosa");
                         $('.consejo').css("transform","translateX(-100%)");
                     });
                     $("#btn3").click(function(){
-                        $("#btn1").removeClass("bg-rosa");
-                        $("#btn2").removeClass("bg-rosa");
-                        $(this).addClass("bg-rosa");
                         $('.consejo').css("transform","translateX(-200%)");
                     });
                 });
@@ -119,9 +114,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
         </div>
         <h1 class="titulo-consejo">Recomendaciones sobre hábitos de sueño saludables</h1>
         <div class="texto-general">
-            <p>El sueño es un proceso biológico de gran complejidad que contribuye a un funcionamiento adecuado de nuestro sistema inmunológico, vascular y endocrino, entre otros, fomentando el procesamiento de la información, la fijación de las memorias y la recuperación física.</p>
-            <p>Cuando nuestro sueño es insuficiente, ya sea en cantidad o en calidad, esto puede tener repercusiones en la salud. Pueden darse alteraciones cognitivas que afecten a nuestro rendimiento mental, como una reducción en la velocidad de reacción y procesamiento de la información, en la consolidación de memorias, en tareas de atención complejas y en la capacidad para tomar decisiones; alteraciones del estado de ánimo, relacionadas con sintomatología ansiosa y depresiva, mayor irritabilidad y mayores dificultades en las relaciones personales; alteraciones de tipo vascular, como aumento de la presión arterial, fomento de enfermedades del corazón u ocurrencia de accidentes cerebrovasculares; o puede fomentar otras condiciones médicas relacionadas con la función hepática, obesidad o diabetes tipo 2. Es por ello que resulta de gran importancia el adoptar unos hábitos de sueño saludables que nos permitan conseguir una adecuada cantidad y calidad del sueño.</p>
-            <p>Los patrones de sueño pueden variar en función de los ritmos y necesidades fisiológicas de cada persona, modificándose la cantidad necesaria de sueño según la edad de la persona, desde las 14-17 horas necesarias para un recién nacido, a las 8-10 horas necesarias para un adolescente. A partir de los 18 años, y durante toda la etapa adulta, la media de sueño necesaria sería de 7 a 9 horas, bajando a una media de 7-8 horas en personas mayores de 65 años, y considerándose perjudicial tanto medias inferiores como superiores a las indicadas. </p>
+            <p class="blq">El sueño es un proceso biológico de gran complejidad que contribuye a un funcionamiento adecuado de nuestro sistema inmunológico, vascular y endocrino, entre otros, fomentando el procesamiento de la información, la fijación de las memorias y la recuperación física.<br><br>Los patrones de sueño pueden variar en función de los ritmos y necesidades fisiológicas de cada persona, modificándose la cantidad necesaria de sueño según la edad de la persona, desde las 14-17 horas necesarias para un recién nacido, a las 8-10 horas necesarias para un adolescente. A partir de los 18 años, y durante toda la etapa adulta, la media de sueño necesaria sería de 7 a 9 horas, bajando a una media de 7-8 horas en personas mayores de 65 años, y considerándose perjudicial tanto medias inferiores como superiores a las indicadas.</p>
+            <p class="blq">Cuando nuestro sueño es insuficiente, ya sea en cantidad o en calidad, esto puede tener repercusiones en la salud. Pueden darse alteraciones cognitivas que afecten a nuestro rendimiento mental, como una reducción en la velocidad de reacción y procesamiento de la información, en la consolidación de memorias, en tareas de atención complejas y en la capacidad para tomar decisiones; alteraciones del estado de ánimo, relacionadas con sintomatología ansiosa y depresiva, mayor irritabilidad y mayores dificultades en las relaciones personales; alteraciones de tipo vascular, como aumento de la presión arterial, fomento de enfermedades del corazón u ocurrencia de accidentes cerebrovasculares; o puede fomentar otras condiciones médicas relacionadas con la función hepática, obesidad o diabetes tipo 2. Es por ello que resulta de gran importancia el adoptar unos hábitos de sueño saludables que nos permitan conseguir una adecuada cantidad y calidad del sueño.</p>
         </div>
     </div>
     <?php include_once('../inc/footer.inc.php'); ?>

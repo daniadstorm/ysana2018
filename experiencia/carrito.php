@@ -20,12 +20,12 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
 <script type="text/javascript">
 </script>
 
-<body>
+<body class="bg-carrito">
     <?php //include_once('../inc/panel_top_experiencia.inc.php'); ?>
     <?php //include_once('../inc/navbar_inicio_experiencia.inc.php'); ?>
     <?php include_once('../inc/panel_top_experiencia.inc.php'); ?>
     <?php include_once('../inc/navbar_inicio_experiencia.inc.php'); ?>
-    <div class="bg-carrito">
+    <div class="">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8 my-4">
@@ -65,9 +65,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                                 t[0].innerHTML = (150 * x[0].value) + '€';
                                             }
                                         }
-/*                                         function actualizarTotal(){
-
-                                        }
+                                        /*function actualizarTotal(){}
+                                        
                                         $(document).ready(()=>{
                                             $(".qtt-input").change(()=>{
                                                 console.log('jej')

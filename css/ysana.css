@@ -589,6 +589,7 @@ div.infoxs p {
 }
 .bg-carrito{
     background-color: #ebeced;
+    min-height: 480px;
 }
 .ticket-pago{
     background: url(//cdn.pccomponentes.com/img/fondos/bg-ticket-pago.png) bottom repeat-x;
@@ -623,6 +624,9 @@ div.infoxs p {
     color: #444;
     background-color: #fff;
     border-color: #d2d2d2;
+}
+.btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,0)!important;
 }
 .btn-mini{
     padding: 0px 6px;
@@ -1456,7 +1460,7 @@ div.botones form{
 }
 .consejo{
     min-height: 400px;
-    transition: all 1s;
+    transition: all 1.5s;
     /* background-color: aqua; */
 }
 .consejo .texto p{
@@ -1500,6 +1504,8 @@ div.botones form{
     border-radius: 36px;
     width: 32px;
     height: 32px;
+    outline: 0!important;
+    cursor: pointer;
 }
 .bg-rosa{
     background-color: var(--ysana-color-7);
@@ -1514,9 +1520,17 @@ div.botones form{
 }
 #recomendaciones .texto-general p{
     width: 50%;
-    text-align: left;
-    height: fit-content;
-    float: left;
+    text-align: justify;
+}
+.texto-general{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.texto-general p{
+    padding: 2rem;
+}
+.blq{
+    min-width: 300px;
 }
 
 /* .max-w20{
@@ -1528,6 +1542,17 @@ div.botones form{
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 } */
+@media (max-width: 768px){
+    #recomendaciones .texto-general{
+        flex-direction: column;
+    }
+    .texto-general p{
+        padding: 1rem;
+    }
+    #recomendaciones .texto-general p{
+        width: 100%;
+    }
+}
 @media (max-width: 1024px){
     .consejo{
         min-height: 360px;
@@ -1544,6 +1569,7 @@ div.botones form{
         align-items: center;
     }
 }
+
 @media (max-width: 575.98px) {
     .frmcontacto{
         padding: 2rem;
