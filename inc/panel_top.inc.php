@@ -52,11 +52,11 @@ if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
                 <div class="d-block d-sm-none">
                     <div class="botones">
                         <div class="d-flex justify-content-start">
-                            <a href="">
+                            <a href="<?php echo $ruta_inicio;?>login<?php echo ($urlYsana) ? '?cy':''; ?>">
                                 <?php echo $lng['panel_top'][1]; ?>
                             </a>
                             <span class="vl"></span>
-                            <a href="">
+                            <a href="<?php echo $ruta_inicio; echo ($urlYsana) ? 'club_ysana/registro':'registro'; ?>">
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
