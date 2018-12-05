@@ -1,5 +1,5 @@
 <?php
-include_once('../config/config.inc.php'); //cargando archivo de configuracion
+include_once('config/config.inc.php'); //cargando archivo de configuracion
 
 $uM = load_model('usuario');
 $aM = load_model('articulos');
@@ -16,18 +16,18 @@ $carrito_compra = array('123','1234');
 //LISTADO______________________________________________________________________
 
 //LISTADO______________________________________________________________________
-include_once('../inc/cabecera.inc.php'); //cargando cabecera 
+include_once('inc/cabecera.inc.php'); //cargando cabecera 
 ?>
 <script type="text/javascript">
 </script>
 
 <body>
-    <?php //include_once('../inc/franja_top.inc.php'); ?>
-    <?php //include_once('../inc/main_menu.inc.php'); ?>
-    <?php //include_once('../inc/panel_top_experiencia.inc.php'); ?>
-    <?php //include_once('../inc/navbar_inicio_experiencia.inc.php'); ?>
-    <?php include_once('../inc/panel_top_experiencia.inc.php'); ?>
-    <?php include_once('../inc/navbar_inicio_experiencia.inc.php'); ?>
+    <?php //include_once('inc/franja_top.inc.php'); ?>
+    <?php //include_once('inc/main_menu.inc.php'); ?>
+    <?php //include_once('inc/panel_top_experiencia.inc.php'); ?>
+    <?php //include_once('inc/navbar_inicio_experiencia.inc.php'); ?>
+    <?php include_once('inc/panel_top_experiencia.inc.php'); ?>
+    <?php include_once('inc/navbar_inicio_experiencia.inc.php'); ?>
     <div class="bg-carrito">
         <div class="container">
             <div class="row">
@@ -104,6 +104,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                             </span>
                                         </td>
                                         <td data-ref-total="1">150€</td>
+                                        <td class="cerrar">X</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
@@ -125,6 +126,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                             </span>
                                         </td>
                                         <td data-ref-total="2">169€</td>
+                                        <td class="cerrar">X</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -176,7 +178,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
     </div>
 
 
-    <?php include_once('../inc/footer.inc.php'); ?>
+    <?php include_once('inc/footer.inc.php'); ?>
 </body>
 
 </html>

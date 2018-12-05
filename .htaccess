@@ -30,8 +30,9 @@ RewriteRule ^login/$ login.php [L]
 RewriteRule ^registro/$ registro.php [L]
 RewriteRule ^forgot-password/$ forgot-password.php [L]
 
-RewriteRule ^directo_farmacia/carrito/$ directo_farmacia/carrito.php [L]
-RewriteRule ^experiencia/carrito/$ experiencia/carrito.php [L]
+#RewriteRule ^directo_farmacia/carrito/$ directo_farmacia/carrito.php [L]
+#RewriteRule ^experiencia/carrito/$ experiencia/carrito.php [L]
+RewriteRule ^carrito/$ carrito.php [L]
 
 RewriteRule ^club_ysana/$ club_ysana/index.php [L]
 RewriteRule ^club_ysana/registro/$ club_ysana/registro.php [L]

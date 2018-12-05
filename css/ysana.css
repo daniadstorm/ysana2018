@@ -1532,7 +1532,10 @@ div.botones form{
 .blq{
     min-width: 300px;
 }
-
+tr div.cerrar{
+    position: absolute;
+    background-color: red;
+}
 /* .max-w20{
     width: 100%;
 } */
