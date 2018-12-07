@@ -26,7 +26,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
 <body>
     <?php //include_once('../inc/franja_top.inc.php'); ?>
     <?php //include_once('../inc/main_menu.inc.php'); ?>
-    <?php include_once('../inc/panel_top_experiencia.inc.php'); ?>
+    <?php include_once('../inc/panel_top.inc.php'); ?>
+    <?php //include_once('../inc/panel_top_experiencia.inc.php'); ?>
     <?php include_once('../inc/navbar_inicio_experiencia.inc.php'); ?>
     <div class="contenedor">
         <div class="position-relative">

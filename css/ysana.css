@@ -468,7 +468,7 @@ div.freenose div.info {
 }
 .frmcontacto{
     /* padding: 5rem; */
-    padding: 2rem 5rem 2rem 5rem;
+    /* padding: 2rem 5rem 2rem 5rem; */
     max-width: 840px;
     background-color: var(--ysana-color-2);
 }
@@ -1532,9 +1532,17 @@ div.botones form{
 .blq{
     min-width: 300px;
 }
-tr div.cerrar{
+tr a.cerrar{
     position: absolute;
-    background-color: red;
+    right: 1.5rem;
+    background-color: white;
+    cursor: pointer;
+}
+a.cerrar img{
+    max-width: 24px;
+}
+.bg-contacto{
+    overflow: hidden;
 }
 /* .max-w20{
     width: 100%;
@@ -1554,6 +1562,9 @@ tr div.cerrar{
     }
     #recomendaciones .texto-general p{
         width: 100%;
+    }
+    .container.carrito{
+        max-width: 100%;
     }
 }
 @media (max-width: 1024px){
@@ -1575,7 +1586,8 @@ tr div.cerrar{
 
 @media (max-width: 575.98px) {
     .frmcontacto{
-        padding: 2rem;
+        width: 100%;
+        /* padding: 2rem; */
     }
     .h1-mbl{
         font-size: 1.5rem;
@@ -1638,7 +1650,8 @@ tr div.cerrar{
         background-color: var(--ysana-color-2);
     }
     .frmcontacto{
-        padding: 2rem 1rem 2rem 1rem;
+        width: 100%;
+        /* padding: 2rem 1rem 2rem 1rem; */
     }
     ul#nav_inicio li.nav-item{
         padding: .3rem;
@@ -1713,6 +1726,9 @@ tr div.cerrar{
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+    .frmcontacto{
+        padding: 2rem 5rem 2rem 5rem;
+    }
     .carousel-inner{
         height: 400px;
     }
@@ -1746,6 +1762,9 @@ tr div.cerrar{
 }
 
 @media (min-width: 1200px) {
+    .frmcontacto{
+        padding: 2rem 5rem 2rem 5rem;
+    }
     .carousel-inner{
         height: 400px;
     }

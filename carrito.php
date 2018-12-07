@@ -4,13 +4,46 @@ include_once('config/config.inc.php'); //cargando archivo de configuracion
 $uM = load_model('usuario');
 $aM = load_model('articulos');
 $iM = load_model('inputs');
+$cM = load_model('carrito');
 
-$id_usuario = '';
+$id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '';
 $carrito_compra = array('123','1234');
+$orgcc = '';
 
 //GET__________________________________________________________________________
-(isset($_GET['id_articulo'])) ? $id_articulo=$_GET['id_articulo'] : '';
-
+if($id_usuario>0){
+    $rgcc = $cM->get_carrito($id_usuario,$_SESSION['lang']);
+    if($rgcc){
+        while($frgcc = $rgcc->fetch_assoc()){
+            $orgcc .= '<tr>
+            <th scope="row">
+                <div class="foto-carrito">
+                    <img src="https://thumb.pccomponentes.com/w-220-220/articles/9/96677/lg-25um58-p-25-led-ips-ultrawide.jpg" alt="" class="img-fluid">
+                </div>
+            </th>
+            <td>
+                <div class="dato-carrito">
+                    <div class="h5">LG 25UM58-P 25" LED IPS Ultrawide</div>
+                </div>
+            </td>
+            <td>150€</td>
+            <td>
+                <span class="d-flex">
+                    <button type="button" onclick="restQtt(1);" class="btn btn-unidades btn-mini btn-sm qtt-menos">--</button>
+                    <input type="text" data-ref="1" class="form-control qtt-input" value="1">
+                    <button type="button" onclick="addQtt(1);" class="btn btn-unidades btn-mini btn-sm qtt-mas">+</button>
+                </span>
+            </td>
+            <td data-ref-total="1">
+                <label>150€</label>
+                <a class="cerrar">
+                    <img src="<?php echo $ruta_inicio; ?>img/borrarProducto.png" alt="">
+                </a>
+            </td>
+        </tr>';
+        }
+    }
+}
 //GET__________________________________________________________________________
 
 //LISTADO______________________________________________________________________
@@ -29,7 +62,7 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
     <?php include_once('inc/panel_top_experiencia.inc.php'); ?>
     <?php include_once('inc/navbar_inicio_experiencia.inc.php'); ?>
     <div class="bg-carrito">
-        <div class="container">
+        <div class="container carrito">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8 my-4">
                     <div class="carrito p-3">
@@ -68,66 +101,8 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                                                 t[0].innerHTML = (150 * x[0].value) + '€';
                                             }
                                         }
-/*                                         function actualizarTotal(){
-
-                                        }
-                                        $(document).ready(()=>{
-                                            $(".qtt-input").change(()=>{
-                                                console.log('jej')
-                                            });
-                                            var list = document.getElementsByClassName("qtt-input");
-                                                for (var i = 0; i < list.length; i++) {
-                                                    console.log(list[i]);
-                                                    list[i].addEventListener('change', () => {
-                                                        console.log('jeej')
-                                                    })
-                                                }
-                                        }); */
                                     </script>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="foto-carrito">
-                                                <img src="https://thumb.pccomponentes.com/w-220-220/articles/9/96677/lg-25um58-p-25-led-ips-ultrawide.jpg" alt="" class="img-fluid">
-                                            </div>
-                                        </th>
-                                        <td>
-                                            <div class="dato-carrito">
-                                                <div class="h5">LG 25UM58-P 25" LED IPS Ultrawide</div>
-                                            </div>
-                                        </td>
-                                        <td>150€</td>
-                                        <td>
-                                            <span class="d-flex">
-                                                <button type="button" onclick="restQtt(1);" class="btn btn-unidades btn-mini btn-sm qtt-menos">--</button>
-                                                <input type="text" data-ref="1" class="form-control qtt-input" value="1">
-                                                <button type="button" onclick="addQtt(1);" class="btn btn-unidades btn-mini btn-sm qtt-mas">+</button>
-                                            </span>
-                                        </td>
-                                        <td data-ref-total="1">150€</td>
-                                        <td class="cerrar">X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="foto-carrito">
-                                                <img src="https://thumb.pccomponentes.com/w-530-530/articles/13/135336/1.jpg" alt="" class="img-fluid">
-                                            </div>
-                                        </th>
-                                        <td>
-                                            <div class="dato-carrito">
-                                                <div class="h5">LG 32LJ510B 32" HD LED</div>
-                                            </div>
-                                        </td>
-                                        <td>169€</td>
-                                        <td>
-                                            <span class="d-flex">
-                                                <button type="button" onclick="restQtt(2);" class="btn btn-unidades btn-mini btn-sm qtt-menos">--</button>
-                                                <input type="text" data-ref="2" class="form-control qtt-input" value="1">
-                                                <button type="button" onclick="addQtt(2);" class="btn btn-unidades btn-mini btn-sm qtt-mas">+</button>
-                                            </span>
-                                        </td>
-                                        <td data-ref-total="2">169€</td>
-                                        <td class="cerrar">X</td>
-                                    </tr>
+                                    <?php echo $orgcc; ?>
                                 </tbody>
                             </table>
                         </div>

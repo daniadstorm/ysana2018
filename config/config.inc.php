@@ -7,11 +7,11 @@ $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $base = "http://" . $host . $uri . "/";
 /* $ruta_inicio = 'http://adstormcloud.ddns.net/ysana/';
 $ruta_archivos = 'http://adstormcloud.ddns.net/ysana/'; */
-$ruta_inicio = 'http://192.168.1.2/ysana/';
-$ruta_archivos = 'http://192.168.1.2/ysana/';
-//$ruta_inicio = 'https://ysana.es/';
-//$ruta_archivos = 'https://ysana.es/';
-$document_root = $_SERVER['DOCUMENT_ROOT'].'/ysana/';
+//$ruta_inicio = 'http://192.168.1.2/ysana/';
+//$ruta_archivos = 'http://192.168.1.2/ysana/';
+$ruta_inicio = 'https://ysana.es/';
+$ruta_archivos = 'https://ysana.es/';
+$document_root = $_SERVER['DOCUMENT_ROOT'].'/';
 //====================================================================================
 
 /* CONSTANTES */
@@ -53,6 +53,7 @@ if(!isset($_SESSION)) session_start();
 /* if (isset($_POST['idioma_seleccionado'])) $_SESSION['lang'] = $_POST['idioma_seleccionado']; */
 if (isset($_REQUEST['idioma_seleccionado'])) $_SESSION['lang'] = $_REQUEST['idioma_seleccionado'];
 $lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'spa';
+$_SESSION['lang'] = $lang;
 switch ($lang) {
     default:
     case 'spa':        include_once(DOCUMENT_ROOT.'lang/lang.spa.php');   break; //por defecto spa
