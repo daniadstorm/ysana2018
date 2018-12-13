@@ -25,7 +25,7 @@ class htmlModel {
     }
     
     function get_alert($msg, $class) {
-        $r  = '<div class="alert '.$class.' mt-3" role="alert">';
+        $r  = '<div class="alert '.$class.'" role="alert">';
         $r .=   $msg;
         $r .= '</div>';
         return $r;

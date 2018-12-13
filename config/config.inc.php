@@ -7,11 +7,11 @@ $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $base = "http://" . $host . $uri . "/";
 /* $ruta_inicio = 'http://adstormcloud.ddns.net/ysana/';
 $ruta_archivos = 'http://adstormcloud.ddns.net/ysana/'; */
-//$ruta_inicio = 'http://192.168.1.2/ysana/';
-//$ruta_archivos = 'http://192.168.1.2/ysana/';
-$ruta_inicio = 'https://ysana.es/';
-$ruta_archivos = 'https://ysana.es/';
-$document_root = $_SERVER['DOCUMENT_ROOT'].'/';
+$ruta_inicio = 'http://192.168.1.2/ysana/';
+$ruta_archivos = 'http://192.168.1.2/ysana/';
+/* $ruta_inicio = 'https://ysana.es/';
+$ruta_archivos = 'https://ysana.es/'; */
+$document_root = $_SERVER['DOCUMENT_ROOT'].'/ysana/';
 //====================================================================================
 
 /* CONSTANTES */

@@ -52,6 +52,7 @@ if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
                 <div class="d-block d-sm-none">
                     <div class="botones">
                         <div class="d-flex justify-content-start">
+                            <?php if(!isset($_SESSION['id_usuario'])){ ?>
                             <a href="<?php echo $ruta_inicio;?>login<?php echo ($urlYsana) ? '?cy':''; ?>">
                                 <?php echo $lng['panel_top'][1]; ?>
                             </a>
@@ -60,6 +61,10 @@ if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
+                            <?php }else{ ?>
+                                <a href="<?php echo $ruta_inicio;?>login?unlogin" class="bienvenido">Cerrar sesión</a>
+                                <span class="vl"></span>
+                            <?php } ?>
                             <form action="">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>

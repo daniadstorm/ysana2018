@@ -220,6 +220,8 @@ $lng['experiencia-carrito'][5] = 'TOTAL';
 $lng['experiencia-carrito'][6] = 'Con Ysana® puedes beneficiarte de gastos de envío GRATIS';
 $lng['experiencia-carrito'][7] = 'TOTAL';
 $lng['experiencia-carrito'][8] = 'REALIZAR PEDIDO';
+$lng['experiencia-carrito'][9] = 'PAGAR Y FINALIZAR';
+
 //experiencia/carrito.php_____________________________________________________________________________________
 
 //quienes-somos.php___________________________________________________________________________________________
