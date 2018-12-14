@@ -139,7 +139,7 @@ echo $sM->add_cabecera("Complementos para una vida sana - Ysana marca de confian
             <div class="footer-modificado">
 
             </div>
-            <div class="container contacto mt-4">
+            <div class="container contacto">
                 <div class="d-flex justify-content-end align-items-center position-relative">
                     <div class="titulo position-absolute">
                         <h1><?php echo $lng['index'][7]; ?></h1>

@@ -39,7 +39,7 @@
                         <a class="nav-link" href="<?php echo $ruta_inicio; ?>#form-contacto"><?php echo $lng['navbar_inicio'][3]; ?></a>
                     </li>
                     <li>
-                    <a href="#">
+                    <a href="<?php echo $ruta_inicio; ?>carrito">
                         <div class="carrito-img p-2">
                             <img src="<?php echo $ruta_inicio; ?>img/carritoazul.svg" width="32px" class="">
                             <label class="num">0</label>

@@ -11,10 +11,15 @@ $carrito_compra = array('123','1234');
 $orgcc = '';
 $qttCarrito = 1;
 $sumaTotal = 0;
+$valid=true;
 
 
 //GET__________________________________________________________________________
-if(isset($_GET['id_articulo']) && $_GET['opc']){
+if(isset($_POST['btnPedido']) && isset($_GET['opc'])){
+    $valid=false;
+}
+
+if(isset($_GET['id_articulo']) && isset($_GET['opc']) && $valid){
     switch($_GET['opc']){
         case "resta":
             $rguau = $cM->get_unidades_articulo_usuario($id_usuario, $_GET['id_articulo']);
@@ -42,13 +47,19 @@ if(isset($_GET['id_articulo']) && $_GET['opc']){
 
 //LISTADO______________________________________________________________________
 if($id_usuario>0){
-    $rgcc = $cM->get_carrito($id_usuario,$_SESSION['lang']);
+    $rgcc = $cM->get_carrito($id_usuario, $_SESSION['lang']);
     if($rgcc){
         while($frgcc = $rgcc->fetch_assoc()){
             $orgcc .= '<tr>
             <th scope="row">
                 <div class="foto-carrito">
-                    <img src="'.$ruta_inicio.'img/productos/'.$frgcc["img"].'" alt="" class="img-fluid">
+                    <img src="'.$ruta_inicio.'img/productos/';
+            if($frgcc["img_portada"]!=""){
+                $orgcc .= $frgcc["img_portada"];
+            }else{
+                $orgcc .= $frgcc["img"];
+            }
+            $orgcc .= '" alt="" class="img-fluid">
                 </div>
             </th>
             <td>

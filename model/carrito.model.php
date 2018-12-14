@@ -2,9 +2,9 @@
 
 class carritoModel extends Model {
     
-    function add_articulo_carrito($id_usuario, $id_articulo) {
-        $q  = ' INSERT INTO '.$this->pre.'carrito_compra (id_usuario, id_articulo) VALUES ';
-        $q .= ' ("'.$id_usuario.'", "'.$id_articulo.'")';
+    function add_articulo_carrito($id_usuario, $id_articulo, $cantidad) {
+        $q  = ' INSERT INTO '.$this->pre.'carrito_compra (id_usuario, id_articulo, cantidad) VALUES ';
+        $q .= ' ("'.$id_usuario.'", "'.$id_articulo.'", "'.$cantidad.'")';
         return $this->execute_query($q);
     }
 
@@ -57,7 +57,7 @@ class carritoModel extends Model {
     }
 
     function get_carrito($id_usuario, $lang) {
-        $q  = ' SELECT cc.id_articulo,a.precio,a.stock,al.urlseo,al.nombre,cc.cantidad,CONCAT(al.img,".png") as img FROM '.$this->pre.'carrito_compra as cc INNER JOIN ';
+        $q  = ' SELECT cc.id_articulo,a.precio,a.stock,al.urlseo,al.nombre,cc.cantidad,al.img_portada,CONCAT(al.img,".png") as img FROM '.$this->pre.'carrito_compra as cc INNER JOIN ';
         $q .= ' '.$this->pre.'articulos_lang as al ON cc.id_articulo=al.id_articulo INNER JOIN ';
         $q .= ' '.$this->pre.'articulos as a ON al.id_articulo=a.id_articulo INNER JOIN ';
         $q .= ' '.$this->pre.'lang as l ON al.id_lang=l.id_lang ';

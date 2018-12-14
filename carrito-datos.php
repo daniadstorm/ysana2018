@@ -132,7 +132,13 @@ if($id_usuario>0){
     if($rgcc){
         while($frgcc = $rgcc->fetch_assoc()){
             $oca .= '<div class="articulos-enviar-item">
-            <img src="'.$ruta_inicio.'img/productos/'.$frgcc['img'].'" alt="">
+            <img src="'.$ruta_inicio.'img/productos/';
+            if($frgcc["img_portada"]!=""){
+                $oca .= $frgcc["img_portada"];
+            }else{
+                $oca .= $frgcc["img"];
+            }
+            $oca .= '" alt="">
             <div class="articulos-enviar-texto-info">
                 '.$frgcc['nombre'].'
                     <div class="stock">

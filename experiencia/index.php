@@ -3,16 +3,51 @@ include_once('../config/config.inc.php'); //cargando archivo de configuracion
 
 $uM = load_model('usuario');
 $iM = load_model('inputs');
+$aM = load_model('articulos');
 
 $id_usuario = '';
-
+$out = '';
 //GET__________________________________________________________________________
 (isset($_GET['id_articulo'])) ? $id_articulo=$_GET['id_articulo'] : '';
 
 //GET__________________________________________________________________________
 
 //LISTADO______________________________________________________________________
-
+$rgaa = $aM->get_all_articulos("Packs experiencias", $_SESSION['lang'], 1);
+if($rgaa){
+    while($frgaa = $rgaa->fetch_assoc()){
+        $out .= '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 article-block">
+        <article class="tarjeta-articulo">
+            <div class="tarjeta-articulo_elementos-basicos">
+                <div class="tarjeta-articulo_foto">
+                    <img src="'.$ruta_inicio.'img/productosexp/'.$frgaa['img_portada'].'" alt="" class="img-fluid">
+                </div>
+                <div class="tarjeta-articulo_adicional d-flex flex-column">
+                    <header class="tarjeta-articulo_info">
+                        <h3 class="categoria">Ysana®</h3>
+                        <h3 class="nombre">'.$frgaa['nombre'].'</h3>
+                        <h3 class="precio">'.$frgaa['precio'].'</h3>
+                    </header>
+                    <header class="tarjeta-articulo_extras">
+                        <div class="puntuacion">
+                            <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
+                            <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
+                            <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
+                            <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
+                            <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
+                        </div>
+                        <div class="boton">
+                        <a href="'.$frgaa['urlseo'].'">
+                            <button type="button" class="btn btn-comprar btn-sm">'.$lng['experiencia-index'][0].'</button>
+                        </a>    
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </article>
+    </div>';
+    }
+}
 //LISTADO______________________________________________________________________
 include_once('../inc/cabecera.inc.php'); //cargando cabecera 
 ?>
@@ -96,13 +131,13 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
     <div class="container-fluid">
         <div class="row articulos mt-4">
         <?php
-            $cat_encontrado=false;
+            echo $out;
+            /* $cat_encontrado=false;
             $cat_count = 0;
             $categoria = "Pack experiencias";
             while(!$cat_encontrado && $cat_count<count($productos_ysana_experiencia)){
                 if(strtolower($productos_ysana_experiencia[$cat_count]['nombre_categoria'])==strtolower($categoria)){
                     foreach($productos_ysana_experiencia[$cat_count]['productos_categoria'] as $clave => $valor){
-                        /* print_r($valor); */
                         if($valor['activo']==ACTIVADO){
                             echo '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 article-block">
                             <article class="tarjeta-articulo">
@@ -139,7 +174,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                     }
                 }
                 $cat_count++;
-            }
+            } */
            
             ?>
         </div>

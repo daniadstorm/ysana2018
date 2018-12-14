@@ -37,6 +37,60 @@ class articulosModel extends Model {
         return $this->execute_query($q);
     }
 
+    function get_info_articulo($url){
+        $q  = ' SELECT a.*,al.*,c.nombre_categoria FROM '.$this->pre.'articulos a ';
+        $q .= ' INNER JOIN '.$this->pre.'articulos_lang as al ';
+        $q .= ' ON a.id_articulo=al.id_articulo ';
+        $q .= ' INNER JOIN '.$this->pre.'categorias_articulo as ca ';
+        $q .= ' ON ca.id_articulo=a.id_articulo ';
+        $q .= ' INNER JOIN '.$this->pre.'categorias as c ';
+        $q .= ' ON ca.id_categoria=c.id_categoria ';
+        $q .= ' WHERE a.deleted = 0 ';
+        $q .= ' AND a.activo = 1 ';
+        $q .= ' AND al.urlseo = "'.$url.'" ';
+        return $this->execute_query($q);
+    }
+
+    function get_informacion($id_articulo, $lang){
+        $q = ' SELECT * FROM '.$this->pre.'informacion_articulo as ia';
+        $q .= ' INNER JOIN '.$this->pre.'lang as l';
+        $q .= ' on ia.lang=l.id_lang';
+        $q .= ' WHERE ia.id_articulo = ' . $id_articulo;
+        $q .= ' and l.code="'.$lang.'"';
+        return $this->execute_query($q);
+    }
+
+    function get_usos_articulo($id_articulo, $lang) {
+        $q = ' SELECT * FROM '.$this->pre.'uso_articulo as ua';
+        $q .= ' INNER JOIN '.$this->pre.'lang as l';
+        $q .= ' on ua.lang=l.id_lang';
+        $q .= ' WHERE ua.id_articulo = ' . $id_articulo;
+        $q .= ' and l.code="'.$lang.'"';
+        return $this->execute_query($q);
+    }
+
+    function get_all_articulos($categoria, $lang, $tipo_tienda=1){
+        $q = ' SELECT DISTINCT a.*,al.* FROM '.$this->pre.'articulos a ';
+        $q .= ' INNER JOIN '.$this->pre.'articulos_lang al ';
+        $q .= ' ON a.id_articulo=al.id_articulo ';
+
+        $q .= ' INNER JOIN '.$this->pre.'categorias_articulo ca ';
+        $q .= ' ON a.id_articulo=ca.id_articulo ';
+
+        $q .= ' INNER JOIN '.$this->pre.'categorias c ';
+        $q .= ' ON c.id_categoria=ca.id_categoria ';
+
+        $q .= ' INNER JOIN '.$this->pre.'lang as l';
+        $q .= ' on al.id_lang=l.id_lang';
+
+        $q .= ' WHERE a.deleted=0 ';
+        $q .= ' AND a.activo=1 ';
+        $q .= ' AND a.tipo_tienda = '.$tipo_tienda.' ';
+        $q .= ' AND c.nombre_categoria = "'.$categoria.'" ';
+        $q .= ' AND l.code="'.$lang.'"';
+        return $this->execute_query($q);
+    }
+
     function get_articulos($pag, $regs_x_pag) {
         $q  = ' SELECT a.* FROM '.$this->pre.'articulos a ';
         $q .= ' WHERE a.deleted_articulo = 0 ';
@@ -83,15 +137,6 @@ class articulosModel extends Model {
         $q .= ' WHERE a.id_articulo='.$id_articulo;
         $q .= ' and pa.fecha=(SELECT max(spa.fecha) FROM '.$this->pre.'precio_articulo as spa WHERE spa.id_articulo='.$id_articulo.')';
         $q .= ' and a.visible=1';
-        $q .= ' and l.code="'.$lang.'"';
-        return $this->execute_query($q);
-    }
-
-    function get_usos_articulo($id_articulo, $lang) {
-        $q = ' SELECT * FROM '.$this->pre.'uso_articulo as ua';
-        $q .= ' INNER JOIN '.$this->pre.'lang as l';
-        $q .= ' on ua.lang=l.id_lang';
-        $q .= ' WHERE ua.id_articulo = ' . $id_articulo;
         $q .= ' and l.code="'.$lang.'"';
         return $this->execute_query($q);
     }

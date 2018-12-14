@@ -3,6 +3,8 @@ include_once('../config/config.inc.php'); //cargando archivo de configuracion
 
 $uM = load_model('usuario');
 $iM = load_model('inputs');
+$aM = load_model('articulos');
+$cM = load_model('carrito');
 
 $id_usuario = '';
 $id_producto = '';
@@ -14,7 +16,7 @@ $info_producto = array();
 $descripcion = 'N/A';
 $stock=0;
 $precio = 'N/A';
-
+$total_stock = 0;
 
 $consejo_producto = array(
     array('titulo'=>'Titulo','des'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut commodo quam, id aliquet sem. Cras interdum sed elit quis malesuada. Vivamus mauris enim, fermentum ut tempor nec, ultrices ac nisi. Vestibulum facilisis, sapien ut faucibus elementum, nibh enim vestibulum orci, sed auctor ante enim eget tortor. Ut vel faucibus est, quis dictum arcu. Etiam eu justo quis felis ornare mattis. Nulla facilisi. Etiam arcu diam, feugiat aliquam iaculis et, scelerisque a est. Donec nisi leo, cursus vitae purus nec, ultrices fermentum quam.')
@@ -30,19 +32,65 @@ $valoracion_producto = array(
     array('titulo'=>'Pregunta lorem ipsuuuum','des'=>'Respuesta a lorem ipsuuuuuuuuuuum.','puntuacion'=>3,'fecha_valoracion'=>'20-08-2018','nombre_usuario'=>'Sergio','apellidos_usuario'=>'AdStorm')
 );
 $imgs_producto = array();
-$cantidad_productos = array('1','2','3','4','5','6');
-$total_stock = 0;
-$stock=0;
+$cantidad_productos = array();
+
 $count_valoracion_producto = 4;
 $total_valoracion_producto = 7;
+
 //GET__________________________________________________________________________
 (isset($_GET['id_articulo'])) ? $id_articulo=$_GET['id_articulo'] : '';
+$id_usuario = (isset($_SESSION['id_usuario'])) ? $_SESSION['id_usuario'] : '';
 $id_producto = (isset($_GET['id'])) ? $_GET['id'] : '';
-
 //GET__________________________________________________________________________
 
+//POST__________________________________________________________________________
+if(isset($_POST['btnCesta']) && $id_usuario>0){
+    if(isset($_POST['btnCesta']) && isset($_POST['cantidad_productos'])){
+        $cM->add_articulo_carrito($id_usuario, $_POST['id_articulo'], ($_POST['cantidad_productos'])+1);
+    }
+}else if(isset($_POST['btnCesta']) && $id_usuario==0){
+    header('Location: '.$ruta_inicio.'login');
+}
+//POST__________________________________________________________________________
+
 //LISTADO______________________________________________________________________
-$encontrado = false;
+if($id_producto!=''){
+    $rgia = $aM->get_info_articulo($id_producto);
+    if($rgia){
+        while($frgia = $rgia->fetch_assoc()){
+            $nombre=$frgia['nombre'];
+            $nombre_categoria=$frgia['nombre_categoria'];
+            $descripcion=$frgia['descripcion'];
+            $stock=$frgia['stock'];
+            $precio=$frgia['precio'];
+            $id_articulo=$frgia['id_articulo'];
+            array_push($imgs_producto, $frgia['img_portada']);
+        }
+    }
+    $rgua = $aM->get_usos_articulo($id_articulo, $_SESSION['lang']);
+    if($rgua){
+        while($frgua = $rgua->fetch_assoc()){
+            array_push($usos_prod, array(
+                'etiqueta' => $frgua['etiqueta'],
+                'contenido' => $frgua['contenido']
+            ));
+        }
+    }
+    $rgi = $aM->get_informacion($id_articulo, $_SESSION['lang']);
+    if($rgi){
+        while($frgi = $rgi->fetch_assoc()){
+            array_push($info_producto, array(
+                'etiqueta' => $frgi['etiqueta'],
+                'contenido' => $frgi['contenido']
+            ));
+        }
+    }
+    for($i=0;$i<=$stock;$i++){
+        array_push($cantidad_productos, ($i+1));
+    }
+}
+
+/* $encontrado = false;
 $cont_prod = 0;
 $cont_prod_cat = 0;
 //echo '<h1>'.count($productos_ysana_df).'</h1>';
@@ -63,7 +111,11 @@ while(!$encontrado && $cont_prod<count($productos_ysana_experiencia)){
     }
     $cont_prod_cat=0;
     $cont_prod++;
-}
+} */
+
+
+/*  */
+
 //LISTADO______________________________________________________________________
 include_once('../inc/cabecera.inc.php'); //cargando cabecera 
 ?>
@@ -95,8 +147,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                 echo '</div>';
                             }
                             ?> -->
-                            <img src="https://i1.wp.com/spintiresvenezuela.com/wp-content/uploads/2017/05/fondo-gris-claro.jpg" class="w-100">
-                            <div class="row mt-2">
+                            <img src="<?php echo $ruta_inicio; ?>img/productos/<?php echo $imgs_producto[0]; ?>" class="w-100">
+                            <!-- <div class="row mt-2">
                                 <div class="col-md-4">
                                     <img src="https://i1.wp.com/spintiresvenezuela.com/wp-content/uploads/2017/05/fondo-gris-claro.jpg" class="w-100">
                                 </div>
@@ -106,7 +158,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                 <div class="col-md-4">
                                     <img src="https://i1.wp.com/spintiresvenezuela.com/wp-content/uploads/2017/05/fondo-gris-claro.jpg" class="w-100">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="info col-md-6 col-lg-5">
                         <p class="pb-0 mb-0 text-color-3">
@@ -148,10 +200,11 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             <!-- <p>información adicional</p> -->
                             <form action="" method="post">
                                 <button class="btn btn-lg btn-color-5 mb-2 w-100">Comprar Ahora</button>
-                                <button class="btn btn-lg btn-cesta mb-2 w-100">Añadir a la Cesta</button>
+                                <?php echo $iM->get_input_hidden('id_articulo', $id_articulo); ?>
+                                <button class="btn btn-lg btn-cesta mb-2 w-100" name="btnCesta">Añadir a la Cesta</button>
                                 <div class="caja d-flex">
                                     <label class="mr-3">Cantidad</label>
-                                    <?php echo $iM->get_select("cantidad_productos", $stock, $cantidad_productos,''); ?>
+                                    <?php echo $iM->get_select("cantidad_productos", 0, $cantidad_productos,''); ?>
                                 </div>
                             </form>
                         </div>
