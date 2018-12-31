@@ -1,4 +1,40 @@
 <?php $activePage = basename($_SERVER['PHP_SELF'], ".php"); ?>
+<?php
+$id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '';
+$cM = load_model('carrito');
+$outcarrito = '';
+$sumaTotal = 0;
+$qttCarrito = 0;
+$unidades = 0;
+//LISTADO______________________________________________________________________
+if($id_usuario>0){
+    $rgcc = $cM->get_carrito($id_usuario, $_SESSION['lang']);
+    if($rgcc){
+        while($frgcc = $rgcc->fetch_assoc()){
+            $outcarrito .= '<li class="d-flex align-items-center">
+            <img src="'.$ruta_inicio.'img/productos/';
+            if($frgcc["img_portada"]!=""){
+                $outcarrito .= $frgcc["img_portada"];
+            }else{
+                $outcarrito .= $frgcc["img"];
+            }
+            $outcarrito .= '" class="img-prod" alt="">
+            <div class="d-flex flex-column justify-content-between">
+                <p class="m-0 fs-8rem">'.$frgcc["nombre"].'</p>
+                <p class="m-0 text-muted fs-8rem">Cantidad '.$frgcc["cantidad"].'</p>
+                <span class="precio">'.$frgcc["precio"].' €</span>
+            </div>
+            </li>
+            <hr>';
+            $sumaTotal+=($frgcc["precio"]*$frgcc["cantidad"]);
+            $qttCarrito++;
+            $unidades+=$frgcc['cantidad'];
+        }
+    }
+}
+//LISTADO______________________________________________________________________
+
+?>
 <div id="navbar_inicio">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light px-0">
@@ -31,7 +67,7 @@
                         <a class="nav-link text-color-2" href="<?php echo $ruta_inicio; ?>directo_farmacia"><?php echo $lng['navbar_inicio'][2]; ?></a>
                     </li>
                     <li class="nav-item text-right">
-                        <a class="nav-link pt-0 mt-0" href="<?php echo $ruta_inicio; ?>club_ysana">
+                        <a class="nav-link pt-0 mt-0" href="<?php echo $ruta_inicio; ?>clubysana">
                             <img src="<?php echo $ruta_inicio; ?>img/svg/clubysana.svg" height="32px" alt="">
                         </a>
                     </li>
@@ -43,6 +79,20 @@
                         <div class="carrito-img p-2">
                             <img src="<?php echo $ruta_inicio; ?>img/carritoazul.svg" width="32px" class="">
                             <label class="num">0</label>
+                            <ul id="carrito-flotante" class="p-2">
+                                <?php echo $outcarrito; ?>
+
+                                <li class="unit">
+                                    <p class="p-3 mb-2">(<?php echo $unidades; ?>) Unidades
+                                        <span class="pull-xs-right"><?php echo $sumaTotal; ?>€</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <form action="<?php echo $ruta_inicio; ?>carrito/">
+                                        <button class="btn btn-lg btn-block bg-blue-ysana text-light">Realizar Pedido</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </a>
                     </li>

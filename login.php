@@ -33,13 +33,14 @@ if (isset($_POST['nombre_usuario'])) { //si viene de submit de login
     }
 }
 //POST__________________________________________________________________________
-
+echo '<pre>'.print_r($_POST).'</pre>';
 //CONTROL_______________________________________________________________________
 if (isset($_SESSION['id_tipo_usuario'])) { //si hay login
     switch ($_SESSION['id_tipo_usuario']) {
         default:
         case USER:
-            header('Location: '.$ruta_inicio.'index.php');
+            if(isset($_POST['cy'])) header('Location: '.$ruta_inicio.'clubysana');
+            else header('Location: '.$ruta_inicio);
             exit();
         break;
         case ADMIN:
@@ -67,6 +68,9 @@ echo $sM->add_cabecera("Iniciar sesión - Ysana");
                 echo $hM->get_alert($str_errores,"alert-danger");
             } ?>
             <form method="post" class="inputs">
+                <?php
+                if($cy) echo '<input hidden type="text" name="cy" value="true">';
+                ?>
                 <input class="<?php echo ($cy) ? 'cycolor' : ''; ?>" type="text" name="nombre_usuario" placeholder="Usuario">
                 <input class="<?php echo ($cy) ? 'cycolor' : ''; ?>" type="password" name="contrasenya_usuario" placeholder="Contraseña">
                 <input class="<?php echo ($cy) ? 'cycolor' : ''; ?>" type="submit" value="Iniciar Sesión">

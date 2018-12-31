@@ -45,7 +45,9 @@ $id_producto = (isset($_GET['id'])) ? $_GET['id'] : '';
 
 //POST__________________________________________________________________________
 if(isset($_POST['btnCesta']) && $id_usuario>0){
-    if(isset($_POST['btnCesta']) && isset($_POST['cantidad_productos'])){
+    if($cM->get_articulo_carrito($id_usuario, $_POST['id_articulo'])>0){
+        $cM->sumarArticulo($id_usuario, $_POST['id_articulo']);
+    }else if(isset($_POST['btnCesta']) && isset($_POST['cantidad_productos'])){
         $cM->add_articulo_carrito($id_usuario, $_POST['id_articulo'], ($_POST['cantidad_productos'])+1);
     }
 }else if(isset($_POST['btnCesta']) && $id_usuario==0){

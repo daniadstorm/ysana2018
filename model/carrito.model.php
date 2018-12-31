@@ -65,6 +65,20 @@ class carritoModel extends Model {
         return $this->execute_query($q);
     }
 
+    function get_articulo_carrito($id_usuario, $id_articulo){
+        $q = ' SELECT * FROM '.$this->pre.'carrito_compra ca ';
+        $q .= ' WHERE ca.id_usuario='.$id_usuario.' ';
+        $q .= ' AND ca.id_articulo='.$id_articulo.' ';
+        $r = $this->execute_query($q);
+        if ($r) return $r->num_rows;
+            else return false;
+    }
+
+    function get_transporte(){
+        $q = ' SELECT * FROM '.$this->pre.'transporte t ';
+        return $this->execute_query($q);
+    }
+
     function get_unidades_articulo_usuario($id_usuario, $id_articulo){
         $q = ' SELECT cantidad as total FROM ' . $this->pre . 'carrito_compra ';
         $q .= ' WHERE id_usuario = '.$id_usuario.' ';

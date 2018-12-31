@@ -73,7 +73,7 @@ echo $sM->add_cabecera("Complementos para una vida sana - Ysana marca de confian
             </div>
         </div>
         <div class="clubysana">
-            <a href="<?php echo $ruta_inicio; ?>club_ysana">
+            <a href="<?php echo $ruta_inicio; ?>clubysana">
             <div class="info-homee d-flex justify-content-center align-items-center h-100">
                 <img class="img-ysanaclub img-fluid" src="<?php echo $ruta_inicio; ?>img/home-clubysana.svg" alt="">
                 <!-- <div class="contenido m-3"> -->
@@ -101,7 +101,6 @@ echo $sM->add_cabecera("Complementos para una vida sana - Ysana marca de confian
                                         <a href="#"><button type="button" class="btn btn-sm btn-leer-mas mt-2">Ver más</button></a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="d-block d-sm-none">

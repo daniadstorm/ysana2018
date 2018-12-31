@@ -26,7 +26,7 @@ if (isset($_SESSION['id_tipo_usuario'])) { //si hay login
     switch ($_SESSION['id_tipo_usuario']) {
         default:
         case USER:
-            header('Location: '.$ruta_inicio.'club_ysana/areapersonal/');
+            header('Location: '.$ruta_inicio.'clubysana/areapersonal/');
             exit();
         break;
         case ADMIN:

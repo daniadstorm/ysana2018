@@ -9,6 +9,11 @@ $hM = load_model('html');
 
 
 $id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '';
+if(isset($_POST['transporte'])){
+    $_SESSION['transporte']=$_POST['transporte'];
+}
+$gasto_envio = isset($_SESSION['transporte']) ? $_SESSION['transporte'] : '';
+$precioEnvio = 0;
 $carrito_compra = array('123','1234');
 $orgcc = '';
 $qttCarrito = 1;
@@ -28,6 +33,8 @@ $old = '';
 $oldad = '';
 $cont_direcciones = 0;
 $oca = '';
+$iva = 0.21;
+$otransporte = '';
 //datos
 
 //GET__________________________________________________________________________
@@ -66,9 +73,6 @@ if(isset($_POST['id_carrito'])){
             }
             break;
         default:
-            /* echo '<pre>';
-            print_r($_POST);
-            echo '</pre>'; */
             $rude = $cM->update_direccion_envio($id_usuario, $_POST['nombre_usuario'], $_POST['apellidos_usuario'], $_POST['direccion_usuario'], $_POST['cp_usuario'], $_POST['poblacion_usuario'], $_POST['movil_usuario'], $_POST['id_carrito']);
             if($rude){
                 $str_success = 'Actualizado correctamente!';
@@ -116,6 +120,26 @@ if($id_usuario>0){
                 $cont_direcciones++;
         }
     }
+    $rgt = $cM->get_transporte();
+    if($rgt){
+        $otransporte .= '<form id="frmenvio" method="post" class="m-0">';
+        while($frgt = $rgt->fetch_assoc()){
+            $otransporte .= '<div class="input-group my-1">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+              <input ';
+              if($gasto_envio==$frgt['id_transporte']){
+                  $otransporte .= 'checked';
+                  $precioEnvio = $frgt['precio'];
+              }
+            $otransporte .= ' type="radio" name="transporte" value="'.$frgt['id_transporte'].'">
+              </div>
+            </div>
+            <p class="form-control">'.$frgt['nombre'].' <strong>'.$frgt['precio'].'€</strong></p>
+          </div>';
+        }
+        $otransporte .= '</form>';
+    }
     $rgd2 = $cM->get_direcciones($id_usuario, 0);
     if($rgd2){
         while($frgd2 = $rgd2->fetch_assoc()){
@@ -161,6 +185,11 @@ if($id_usuario>0){
 include_once('inc/cabecera.inc.php'); //cargando cabecera 
 ?>
 <script type="text/javascript">
+    $(document).ready(function(){
+        $('input[type="radio"]').change(function(){
+            $('#frmenvio').submit();
+        });
+    });
 </script>
 
 <body>
@@ -267,6 +296,11 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                                 </div>
                             </div>
                         </div>
+                        <div class="info-datos transporte">
+                            <div class="info-resumen">
+                                <?php echo $otransporte; ?>
+                            </div>
+                        </div>
                 </div>
                 <div class="pedido show col-12 col-md-12 col-lg-4 my-4">
                     <div class="info-pago">
@@ -274,13 +308,21 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                             <div class="ticket-pago">
                                 <div class="ticket-pago_desglose">
                                     <div class="ticket-pago_articulos">
-                                        <?php echo $lng['experiencia-carrito'][6]; ?>
+                                        <div class="d-flex flex-column">
+                                            <strong class="w-100">
+                                                <span>IVA (21%)</span>
+                                                <span data-precio-total class="pull-xs-right"><?php echo round($sumaTotal*$iva,2); ?> €</span>
+                                            </strong>
+                                            <strong class="w-100">
+                                                <span>Gastos de envío</span>
+                                                <span data-precio-total class="pull-xs-right"><?php echo $precioEnvio; ?> €</span>
+                                            </strong>
+                                        </div>
                                     </div>
                                     <div class="ticket-pago_total">
                                         <strong class="w-100">
                                             <?php echo $lng['experiencia-carrito'][7]; ?>
-                                            <span data-precio-total class="pull-xs-right">
-                                                <?php echo $sumaTotal; ?> €</span>
+                                            <span data-precio-total class="pull-xs-right"><?php echo ($sumaTotal+$precioEnvio); ?> €</span>
                                         </strong>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@ $arr_idioma = array(
     'eng' => 'ENG'
 );
 $urlYsana=false;
-if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
+if($_SERVER["REQUEST_URI"]=="/ysana/clubysana/"){
     $urlYsana=true;
 }
 
@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
                                 <?php echo $lng['panel_top'][1]; ?>
                             </a>
                             <span class="vl"></span>
-                            <a href="<?php echo $ruta_inicio; echo ($urlYsana) ? 'club_ysana/registro':'registro'; ?>" class="bienvenido">
+                            <a href="<?php echo $ruta_inicio; echo ($urlYsana) ? 'clubysana/registro':'registro'; ?>" class="bienvenido">
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_URI"]=="/ysana/club_ysana/"){
                                 <?php echo $lng['panel_top'][1]; ?>
                             </a>
                             <span class="vl"></span>
-                            <a href="<?php echo $ruta_inicio; echo ($urlYsana) ? 'club_ysana/registro':'registro'; ?>">
+                            <a href="<?php echo $ruta_inicio; echo ($urlYsana) ? 'clubysana/registro':'registro'; ?>">
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>

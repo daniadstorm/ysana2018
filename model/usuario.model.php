@@ -9,7 +9,7 @@ class usuarioModel extends Model {
     function __construct() {
     }
 
-    function add_post_zoho($url,$params){
+    function add_post_zoho($url, $params){
         //url-ify datos
         $params_string = '';
         foreach($params as $key=>$value){
@@ -21,7 +21,8 @@ class usuarioModel extends Model {
         //Añadir url, numero post params, datos
         curl_setopt($ch,CURLOPT_URL, $url);
         curl_setopt($ch,CURLOPT_POST, count($params));
-        //curl_setopt($ch,CURLOPT_POSTFIELDS, $params_string);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $params_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //enviar post
         $result = curl_exec($ch);
         /* print_r($result); */

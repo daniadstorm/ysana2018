@@ -12,6 +12,7 @@ $orgcc = '';
 $qttCarrito = 1;
 $sumaTotal = 0;
 $valid=true;
+$iva = 0.21;
 
 
 //GET__________________________________________________________________________
@@ -133,7 +134,16 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                             <div class="ticket-pago">
                                 <div class="ticket-pago_desglose">
                                     <div class="ticket-pago_articulos">
-                                        <?php echo $lng['experiencia-carrito'][6]; ?>
+                                        <div class="d-flex flex-column">
+                                            <strong class="w-100">
+                                                <span>IVA (21%)</span>
+                                                <span data-precio-total class="pull-xs-right"><?php echo round($sumaTotal*$iva,2); ?> €</span>
+                                            </strong>
+                                            <strong class="w-100">
+                                                <span>Gastos de envío</span>
+                                                <span data-precio-total class="pull-xs-right">- €</span>
+                                            </strong>
+                                        </div>
                                     </div>
                                     <div class="ticket-pago_total">
                                         <strong class="w-100">

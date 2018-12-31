@@ -32,55 +32,55 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
     <div class="container-fluid px-0">
         <ul id="nav-clubysana" class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="areapersonal-tab" href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal">Tu Area Personal</a>
+                <a class="nav-link" id="areapersonal-tab" href="<?php echo $ruta_inicio; ?>clubysana/areapersonal">Tu Area Personal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="experiencia-tab" href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal">Tu Experiencia</a>
+                <a class="nav-link" id="experiencia-tab" href="<?php echo $ruta_inicio; ?>clubysana/areapersonal">Tu Experiencia</a>
             </li>
         </ul>
     </div>
     <div class="container-fluid">
         <div class="neurologia">
             <div class="cont">
-                <a href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal/neurologia/sueno">
+                <a href="<?php echo $ruta_inicio; ?>clubysana/areapersonal/neurologia/sueno">
                     <img src="<?php echo $ruta_inicio; ?>img/club-ysana-picto-articulo-suenoMesa.png" alt="">
                     <p>Sueño</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 2</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 3</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 4</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 5</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 6</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
             <div class="cont">
                 <a href="#">
-                    <img src="https://www.tenvinilo.com/vinilos-decorativos/img/preview/pegatinas-personalizadas-redonda-promo-1336.png" alt="">
-                    <p>Articulo 7</p>
+                    <img src="<?php echo $ruta_inicio; ?>img/circ-ysana.png" alt="">
+                    <p>Pronto Disponible</p>
                 </a>
             </div>
         </div>

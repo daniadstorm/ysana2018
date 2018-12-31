@@ -28,6 +28,14 @@ if(isset($_POST['id_usuario'])){
     $ruu = $uM->update_usuario($id_usuario, $_POST['nombre_usuario'], $_POST['apellidos_usuario'], $_POST['genero']);
     if($ruu){
         $str_info = 'Datos actualizados';
+        $uM->add_post_zoho('https://creator.zoho.eu/api/pharmalink/json/ysanaapp/form/usuarios/record/add/', array(
+            'authtoken' => AUTHTOKEN,
+            'scope' => SCOPE,
+            'nombre_usuario' => $_POST['nombre_usuario'],
+            'apellidos_usuario' => $_POST['apellidos_usuario'],
+            'email_usuario' => $_POST['email_usuario'],
+            'genero_usuario' => $_POST['genero']
+        ));
     }else{
         $str_error = 'Error al actualizar los datos';
     }
@@ -47,6 +55,10 @@ if($id_usuario>0){
     }else{
         $str_error = 'No ha sido posible cargar los datos';
     }
+}
+if (!isset($_SESSION['id_tipo_usuario'])) { //si hay login
+    header('Location: '.$ruta_inicio);
+    exit();
 }
 //CONTROL__________________________________________________________________________
 
@@ -97,7 +109,8 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                                 echo $iM->get_input_hidden('id_usuario', $id_usuario);
                                 echo $iM->get_input_text('nombre_usuario', $nombre_usuario, 'inputFrm', '', 'Nombre','', '', '', '', 'form-group', false);
                                 echo $iM->get_input_text('apellidos_usuario', $apellidos_usuario, 'inputFrm', '', 'Apellidos','', '', '', '', 'form-group', false);
-                                echo $iM->get_input_text('email_usuario', $email_usuario, 'inputFrm', '', 'Correo electronico','', '', '', '', 'form-group', true);
+                                echo $iM->get_input_hidden('email_usuario', $email_usuario);
+                                echo $iM->get_input_text('email', $email_usuario, 'inputFrm', '', 'Correo electronico','', '', '', '', 'form-group', true);
                                 echo $iM->get_select('genero', $genero, $arr_genero, 'inputFrm');
                                 echo '<button class="inputFrm enviar">Guardar cambios</button>';
                             }
@@ -106,9 +119,10 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                         </form>
                     </div>
                     <div class="sueno">
-                        <a href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal/neurologia/sueno">
+                        <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
                             <img src="<?php echo $ruta_inicio;?>img/club-ysana-picto-sueño-1.png" alt="">
                             <h5>Obtén ahora un diagnóstico de hábitos de sueño gracias. Te damos la bienvenida a la experiencia Eficaps</h5>
+                            <button class="btn-degr-cy my-2">Pedir diagnóstico del sueño gratis ahora</button>
                         </a>
                     </div>
                 </div>
@@ -130,7 +144,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                 <div class="container-fluid">
                     <div class="tuexperiencia py-5">
                         <div class="cont">
-                            <a href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal/neurologia">
+                            <a href="<?php echo $ruta_inicio; ?>clubysana/areapersonal/neurologia">
                                 <img src="<?php echo $ruta_inicio; ?>img/club-ysana-pictograma-usuario-mental.png" alt="">
                                 <h2>Ysana® 360º Neurología</h2>
                             </a>

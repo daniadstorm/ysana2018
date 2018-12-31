@@ -42,7 +42,7 @@ if($rgaa){
                             <img class="img-start" src="'.$ruta_archivos.'img/star-color.png">
                         </div>
                         <div class="boton">
-                        <a href="'.$frgaa['urlseo'].'">
+                        <a href="'.$ruta_inicio.'directo_farmacia/producto/'.$frgaa['urlseo'].'">
                             <button type="button" class="btn btn-comprar btn-sm">'.$lng['experiencia-index'][0].'</button>
                         </a>    
                         </div>
@@ -119,22 +119,22 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
         <div class="familias mt-3">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=eficaps">Eficaps</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/eficaps/">Eficaps</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=mujer">Mujer</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/mujer/">Mujer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=autocuidado">Autocuidado</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/autocuidado/">Autocuidado</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=senior">Senior</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/senior/">Senior</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=respira">Respira</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/respira/">Respira</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/index.php?categoria=infantil">Infantil</a>
+                    <a class="nav-link" href="<?php echo $ruta_inicio; ?>directo_farmacia/infantil/">Infantil</a>
                 </li>
             </ul>
         </div>

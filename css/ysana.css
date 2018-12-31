@@ -10,7 +10,7 @@
     --ysana-color-8: #F23F00;    
 }
 html, body { margin:0;padding:0; }
-body { /* background-color:#f2f2f2; */ font-family: 'Roboto'; font-weight: normal!important; }
+body { /* background-color:#f2f2f2; */ font-family: 'Roboto'; font-weight: normal!important; overflow-x: hidden; }
 /*globales --------------------------------------------------------------------*/
 
 /*correcciones bootstrap ------------------------------------------------------*/
@@ -1476,6 +1476,7 @@ div.botones form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    white-space: normal;
 }
 .consejo .imagen{
     width: 50%;
@@ -1633,6 +1634,72 @@ p[data-toggle]{
 }
 .negative-emp{
     color: #ff4545;
+}
+#carrito-flotante{
+    transform: translateX(100%);
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 54px;
+    right: -14px;
+    background-color: red;
+    width: 340px;
+    transition: 1s;
+    z-index: -1;
+    max-height: 500px;
+    transition-delay: .3s;
+    overflow-x: auto;
+    border-top: 5px solid var(--ysana-color-2);
+    background-color: white;
+    box-shadow: 0 5px 15px -3px rgba(0,0,0,.23);
+    list-style: none;
+}
+#carrito-flotante .img-prod{
+    max-width: 96px;
+    height: auto;
+    margin-right: .5rem;
+}
+#carrito-flotante hr{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.unit{
+    background: #f2f2f2;
+}
+.text-muted{
+    color: #bababa;
+}
+span.precio{
+    font-size: 1rem;
+    color: #5e5b58;
+    font-weight: 700;
+}
+.fs-8rem{
+    font-size: .8rem;
+}
+.carrito-img:hover #carrito-flotante{
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%);
+}
+.sub-menu{
+    transition: all .5s ease 0s, visibility 0s linear .5s;
+}
+.btn-degr-cy{
+    padding: 5px 20px;
+    border: 1px solid var(--ysana-color-7);
+    border-radius: 36px;
+    max-width: 100%;
+    color: white;
+    outline: 0;
+    background: #e6007f;
+    transition: .5s;
+    background: linear-gradient(to bottom, #e6007f 0%, #e6007f 45%, #ff82c7 95%, #ff82c7 100%);
+}
+.btn-degr-cy:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 /* .max-w20{
     width: 100%;

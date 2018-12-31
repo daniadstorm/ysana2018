@@ -35,10 +35,10 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
     <div class="container-fluid px-0">
         <ul id="nav-clubysana" class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="areapersonal-tab" href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal">Tu Area Personal</a>
+                <a class="nav-link" id="areapersonal-tab" href="<?php echo $ruta_inicio; ?>clubysana/areapersonal">Tu Area Personal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="experiencia-tab" href="<?php echo $ruta_inicio; ?>club_ysana/areapersonal">Tu Experiencia</a>
+                <a class="nav-link" id="experiencia-tab" href="<?php echo $ruta_inicio; ?>clubysana/areapersonal">Tu Experiencia</a>
             </li>
         </ul>
     </div>
@@ -52,9 +52,12 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             <h1>1</h1>
                             <h2>Evitar dormir siesta</h2>
                             <p>En caso de dificultades en la conciliación del sueño o de presentar sueño fraccionado, o bien limitarla a 20-30 minutos tras la comida.</p>
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
+                                <button class="btn-degr-cy my-2">Recomendaciones generales sobre hábitos de sueño saludables</button>
+                            </a>
                         </div>
                         <div class="imagen">
-                            <a href="https://survey.zohopublic.eu/zs/fbB8dr">
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
                                 <img src="<?php echo $ruta_inicio; ?>img/club-ysana-picto-sueño-1.png" alt="">
                             </a>
                         </div>
@@ -66,9 +69,12 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             <h1>2</h1>
                             <h2>Horas de sueño</h2>
                             <p>Dormir la cantidad de horas suficientes. Esta cantidad variará según la edad: recién nacidos (de 0-3 meses) 14-17 h; lactantes (4-11 meses), 12-15 h; niños pequeños (1-2 años), 11-14 h; niños en edad preescolar (3-5 años), 10-13 h; niños en edad escolar (6-13 años), 9-11 h; adolescentes, 8-10 h; adultos (18-64 años), 7-9 h; y adultez tardía (> 65 años), 7-8 h. </p>
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
+                                <button class="btn-degr-cy my-2">Recomendaciones generales sobre hábitos de sueño saludables</button>
+                            </a>
                         </div>
                         <div class="imagen">
-                            <a href="https://survey.zohopublic.eu/zs/fbB8dr">
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
                                 <img src="<?php echo $ruta_inicio; ?>img/club-ysana-picto-sueño-2.png" alt="">
                             </a>
                         </div>
@@ -80,9 +86,12 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             <h1>3</h1>
                             <h2>Regularidad de sueño</h2>
                             <p>Buscar una regularidad en los horarios, intentando que la diferencia entre la hora de acostarse y la hora de despertarse, entre los días laborables y los días festivos, no exceda las dos horas de diferencia.</p>
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
+                                <button class="btn-degr-cy my-2">Recomendaciones generales sobre hábitos de sueño saludables</button>
+                            </a>
                         </div>
                         <div class="imagen">
-                            <a href="https://survey.zohopublic.eu/zs/fbB8dr">
+                            <a target="_blank" href="https://survey.zohopublic.eu/zs/fbB8dr">
                                 <img src="<?php echo $ruta_inicio; ?>img/club-ysana-picto-sueño-3.png" alt="">
                             </a>
                         </div>

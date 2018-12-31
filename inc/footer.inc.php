@@ -73,7 +73,7 @@
                     <h3><?php echo $lng['footer'][15]; ?></h3>
                     <ol class="pl-0">
                         <li>
-                            <a href="<?php echo $ruta_inicio; ?>club_ysana">
+                            <a href="<?php echo $ruta_inicio; ?>clubysana">
                                 <img src="<?php echo $ruta_inicio; ?>img/svg/clubysanaicono.svg" height="64px" alt="">
                             </a>
                         </li>

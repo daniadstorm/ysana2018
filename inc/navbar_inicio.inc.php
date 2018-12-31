@@ -31,7 +31,7 @@
                         <a class="nav-link text-color-2" href="<?php echo $ruta_inicio; ?>directo_farmacia"><?php echo $lng['navbar_inicio'][2]; ?></a>
                     </li>
                     <li class="nav-item text-right">
-                        <a class="nav-link pt-0 mt-0" href="<?php echo $ruta_inicio; ?>club_ysana">
+                        <a class="nav-link pt-0 mt-0" href="<?php echo $ruta_inicio; ?>clubysana">
                             <img src="<?php echo $ruta_inicio; ?>img/svg/clubysana.svg" height="32px" alt="">
                         </a>
                     </li>

@@ -3,10 +3,10 @@
 //se carga desde 'config/config.inc.php'
 
 class Model {
-    private $host_bd = '37.60.224.6';
-    private $name_bd = 'steamp85_ysana';
-    private $user_bd = 'steamp85_ysana';
-    private $pass_bd = 'X4nOO6dxAh7I';
+    private $host_bd = '77.104.147.210';
+    private $name_bd = 'aulademu_ysana';
+    private $user_bd = 'aulademu_ysana';
+    private $pass_bd = 'K1pg3BjZLUxc';
     public $pre = 'adst_ysana_';
 
     private $link_bd = false;
