@@ -50,12 +50,11 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
         <nav>
             <ol class="breadcrumb ysana-body pl-0">
                 <li class="breadcrumb-item">
-                    <a href="#">Ysana</a>
+                    <a href="<?php echo $ruta_inicio; ?>">Ysana</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="<?php echo $ruta_inicio; ?>">Home</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Directo a Farmacia</li>
             </ol>
         </nav>
     </div>
@@ -84,11 +83,12 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                 <img src="../img/ysanaclubbl.png" alt="Logo Ysana">
             </div>
             <div class="texto-bienvenida">
-                <p>Únete ahora al Club Ysana y enlaza con la vida sana. La primera comunidad online orientada al autocuidado y los hábitos de vida saludables, donde podrás compartir tus inquietudes, obtener consejos personalizados de farmacéuticos y coachs profesionales, obtener premios, acceder a muestras de producto en primicia, compartir experiencias y, por supuesto, mejorar tus hábitos de vida de manera constante.</p>
+                <p><?php echo $lng['clubysana'][0]; ?></p>
+                <!-- <p>Únete ahora al Club Ysana y enlaza con la vida sana. La primera comunidad online orientada al autocuidado y los hábitos de vida saludables, donde podrás compartir tus inquietudes, obtener consejos personalizados de farmacéuticos y coachs profesionales, obtener premios, acceder a muestras de producto en primicia, compartir experiencias y, por supuesto, mejorar tus hábitos de vida de manera constante.</p> -->
             </div>
             <div class="cy-inputs">
                 <button class="cy-btn">
-                    <a href="registro/" class="text-i">Unirme al Club Ysana®</a>
+                    <a href="registro/" class="text-i"><?php echo $lng['clubysana'][1]; ?></a>
                 </button>
                 <!-- <button class="cy-btn">
                     <a href="#" class="text-i">Pertenecer Club Ysana® Farmecéutico</a>

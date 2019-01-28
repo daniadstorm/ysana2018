@@ -47,7 +47,7 @@ if(isset($_POST['randomkey'])){
         if($rup){
             $str_info = 'Contraseña cambiada';
         }else{
-            $str_info = '¿?';
+            $str_info = 'No ha sido posible cambiar la contraseña';
         }
     }
 }
@@ -58,9 +58,9 @@ if(isset($_POST['email_usuario'])){
     if($raru){
         $rufm = $uM->user_forgotpass_mail($_POST['email_usuario'], $raru, $ruta_inicio);
         if($rufm){
-            echo 'Todo bien';
+            //echo 'Todo bien';
         }else{
-            echo 'Todo mal';
+            //echo 'Todo mal';
         }
     }else{
         $str_errores = 'No ha sido posible envíar el correo de recuperación de contraseña';

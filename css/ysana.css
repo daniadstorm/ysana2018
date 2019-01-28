@@ -1701,6 +1701,32 @@ span.precio{
     cursor: pointer;
     transform: scale(1.1);
 }
+#btnPagar:disabled{
+    background-color: gray!important;
+}
+.carrito div.alert{
+    max-width: 100%!important;
+}
+#aviso-legal p.txt_legal{
+    color: #000;
+}
+#aviso-legal p.txt_legal::before{
+    content: "- ";
+    /* content: url(https://www.w3schools.com/css/smiley.gif); */
+}
+#aviso-legal h1.ttl_general{
+    text-align: center;
+    color: #000;
+}
+#aviso-legal span.ttl_legal{
+    font-size: 1.4rem;
+    line-height: 3rem;
+    font-weight: bold;
+    opacity: 0.6;
+}
+#aviso-legal.container-aviso {
+    max-width: 1600px;
+}
 /* .max-w20{
     width: 100%;
 } */

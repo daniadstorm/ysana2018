@@ -68,7 +68,62 @@ class articulosModel extends Model {
         $q .= ' and l.code="'.$lang.'"';
         return $this->execute_query($q);
     }
+    /* USO */
+    function existeuso($id_articulo){
+        $q = ' SELECT * FROM '.$this->pre.'usoarticulos ';
+        $q .= ' WHERE id_articulo = "'.$id_articulo.'"';
+        $r = $this->execute_query($q);
+        if ($r) return $r->num_rows;
+            else return false;
+    }
 
+    function addusos($id_articulo, $contenido){
+        $q  = ' INSERT INTO '.$this->pre.'usoarticulos (id_articulo, contenido) VALUES ';
+        $q .= ' ("'.$id_articulo.'", "'.$contenido.'")';
+        return $this->execute_query($q);
+    }
+
+    function getusos($id_articulo){
+        $q  = ' SELECT * FROM '.$this->pre.'usoarticulos ';
+        $q .= ' WHERE id_articulo="'.$id_articulo.'"';
+        return $this->execute_query($q);
+    }
+
+    function updateusos($id_articulo, $contenido){
+        $q = ' UPDATE '.$this->pre.'usoarticulos SET ';
+        $q .= ' contenido="'.$contenido.'" ';
+        $q .= ' WHERE id_articulo="'.$id_articulo.'" ';
+        return $this->execute_query($q);
+    }
+    /* USO */
+    /* INFO */
+    function existeinfo($id_articulo){
+        $q = ' SELECT * FROM '.$this->pre.'informacionarticulo ';
+        $q .= ' WHERE id_articulo = "'.$id_articulo.'"';
+        $r = $this->execute_query($q);
+        if ($r) return $r->num_rows;
+            else return false;
+    }
+
+    function addinfo($id_articulo, $contenido){
+        $q  = ' INSERT INTO '.$this->pre.'informacionarticulo (id_articulo, contenido) VALUES ';
+        $q .= ' ("'.$id_articulo.'", "'.$contenido.'")';
+        return $this->execute_query($q);
+    }
+
+    function getinfo($id_articulo){
+        $q  = ' SELECT * FROM '.$this->pre.'informacionarticulo ';
+        $q .= ' WHERE id_articulo="'.$id_articulo.'"';
+        return $this->execute_query($q);
+    }
+
+    function updateinfo($id_articulo, $contenido){
+        $q = ' UPDATE '.$this->pre.'informacionarticulo SET ';
+        $q .= ' contenido="'.$contenido.'" ';
+        $q .= ' WHERE id_articulo="'.$id_articulo.'" ';
+        return $this->execute_query($q);
+    }
+    /* INFO */
     function get_all_articulos($categoria, $lang, $tipo_tienda=1){
         $q = ' SELECT DISTINCT a.*,al.* FROM '.$this->pre.'articulos a ';
         $q .= ' INNER JOIN '.$this->pre.'articulos_lang al ';
@@ -256,6 +311,7 @@ class articulosModel extends Model {
             }
         }
     }
+    
     
     function update_articulo($id_articulo, $nombre_articulo, $referencia_articulo,$referencia_proveedor_articulo,$descripcion_articulo,$activado_articulo,
         $visible_en_tienda_articulo,$precio_coste_articulo,$coste_externo_portes_articulo,$PVP_final_articulo,$margen_articulo,$inicio_descuento_articulo,

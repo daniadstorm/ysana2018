@@ -21,11 +21,9 @@ class usuarioModel extends Model {
         //Añadir url, numero post params, datos
         curl_setopt($ch,CURLOPT_URL, $url);
         curl_setopt($ch,CURLOPT_POST, count($params));
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $params_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //enviar post
+        //curl_setopt($ch,CURLOPT_POSTFIELDS, $params_string);
+        //curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
-        /* print_r($result); */
         //cerrar conexión
         curl_close($ch);
     }
@@ -64,6 +62,13 @@ class usuarioModel extends Model {
         $q .= ' password_usuario="'.$password_usuario.'", ';
         $q .= ' randomkey="'.$randomkey.'" ';
         $q .= ' WHERE id_usuario='.$id_usuario.'';
+        return $this->execute_query($q);
+    }
+
+    function set_estado_pedido_by_factura($id_pedido, $estado){
+        $q  = ' UPDATE '.$this->pre.'pedidos SET ';
+        $q .= ' completado="'.$estado.'" ';
+        $q .= ' WHERE id_pedido='.$id_pedido.'';
         return $this->execute_query($q);
     }
 

@@ -20,6 +20,7 @@ $arr_idioma = array(
                 <div class="d-none d-sm-block">
                     <div class="botones">
                         <div class="d-flex justify-content-end">
+                            <?php if(!isset($_SESSION['id_usuario'])){ ?>
                             <a href="<?php echo $ruta_inicio;?>login" class="bienvenido">
                                 <?php echo $lng['panel_top'][1]; ?>
                             </a>
@@ -28,7 +29,11 @@ $arr_idioma = array(
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
-                            <form action="">
+                            <?php }else{ ?>
+                                <a href="<?php echo $ruta_inicio;?>login?unlogin" class="bienvenido">Cerrar sesión</a>
+                                <span class="vl"></span>
+                            <?php } ?>
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                             <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -52,7 +57,7 @@ $arr_idioma = array(
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
-                            <form action="">
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                         </div>

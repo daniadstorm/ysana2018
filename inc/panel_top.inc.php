@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_URI"]=="/ysana/clubysana/"){
                                 <a href="<?php echo $ruta_inicio;?>login?unlogin" class="bienvenido">Cerrar sesión</a>
                                 <span class="vl"></span>
                             <?php } ?>
-                            <form action="">
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                             <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_URI"]=="/ysana/clubysana/"){
                                 <a href="<?php echo $ruta_inicio;?>login?unlogin" class="bienvenido">Cerrar sesión</a>
                                 <span class="vl"></span>
                             <?php } ?>
-                            <form action="">
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                         </div>

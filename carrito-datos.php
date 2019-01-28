@@ -33,8 +33,9 @@ $old = '';
 $oldad = '';
 $cont_direcciones = 0;
 $oca = '';
-$iva = 0.21;
 $otransporte = '';
+$aux_id_factura = '';
+$cargar=false;
 //datos
 
 //GET__________________________________________________________________________
@@ -82,6 +83,7 @@ if(isset($_POST['id_carrito'])){
             break;
     }
 }
+
 //POST__________________________________________________________________________
 
 //LISTADO______________________________________________________________________
@@ -117,6 +119,12 @@ if($id_usuario>0){
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
             </div></form></div></div></div>';
+            $nombre = $frgd['nombre'];
+            $apellidos = $frgd['apellidos'];
+            $direccion = $frgd['direccion'];
+            $poblacion = $frgd['poblacion'];
+            $cp = $frgd['codigo_postal'];
+            $movil = $frgd['movil'];
                 $cont_direcciones++;
         }
     }
@@ -181,12 +189,59 @@ if($id_usuario>0){
         }
     }
 }
+if(isset($_POST['btnPedido']) && $sumaTotal>0){
+
+    $rap = $cM->add_pedido($id_usuario, $nombre, $apellidos, $direccion, $cp, $poblacion, $movil);
+    if($rap){
+        $aux_id_factura = $cM->get_insert_id();
+        $aux_id_factura = $rootM->zerofill($aux_id_factura, 8);
+    }
+
+    include_once('lib/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php');
+
+    $apiRedsys = new RedsysAPI;
+
+    $Ds_Merchant_MerchantCode = DS_MERCHANT_CODE;
+    $Ds_Merchant_Terminal = DS_MERCHANT_TERMINAL;
+    $Ds_Merchant_TransactionType = DS_AUTORIZACION;
+    $Ds_Merchant_Amount = $cM->get_gateway_format($sumaTotal+$precioEnvio);
+    $DS_Merchant_Currency = DS_EURO;
+    $Ds_Merchant_Order = $aux_id_factura; //$aux_id_factura;
+    $Ds_Merchant_MerchantURL = DS_MERCHANT_URL;
+    $Ds_Merchant_MerchantURLOK = DS_MERCHANT_URL.'?factura='.$aux_id_factura.'&result=ok';
+    $Ds_Merchant_MerchantURLKO = DS_MERCHANT_URL.'?factura='.$aux_id_factura.'&result=ko';
+    $Ds_Merchant_MerchantName = DS_MERCHANT_NAME;
+
+    $apiRedsys->setParameter('DS_MERCHANT_AMOUNT', $Ds_Merchant_Amount);
+    $apiRedsys->setParameter('DS_MERCHANT_ORDER', strval($Ds_Merchant_Order));
+    $apiRedsys->setParameter('DS_MERCHANT_MERCHANTCODE', $Ds_Merchant_MerchantCode);
+    $apiRedsys->setParameter('DS_MERCHANT_CURRENCY', $DS_Merchant_Currency);
+    $apiRedsys->setParameter('DS_MERCHANT_TRANSACTIONTYPE', $Ds_Merchant_TransactionType);
+    $apiRedsys->setParameter('DS_MERCHANT_TERMINAL', $Ds_Merchant_Terminal);
+    $apiRedsys->setParameter('DS_MERCHANT_MERCHANTURL', $Ds_Merchant_MerchantURL);
+    $apiRedsys->setParameter('DS_MERCHANT_URLOK', $Ds_Merchant_MerchantURLOK);
+    $apiRedsys->setParameter('DS_MERCHANT_URLKO', $Ds_Merchant_MerchantURLKO);
+    $apiRedsys->setParameter('DS_MERCHANT_MERCHANTNAME', $Ds_Merchant_MerchantName);
+
+    $Ds_version = DS_VERSION;
+    $Ds_KEY = DS_MERCHANT_KEY;
+
+    $Ds_params = $apiRedsys->createMerchantParameters();
+    $Ds_signature = $apiRedsys->createMerchantSignature($Ds_KEY);
+    //CONFIGURAR DATOS TPV -------------------------------------
+/*     echo $aux_id_factura.'<br>';
+    echo $sumaTotal+$precioEnvio.'<br>'; */
+    $cargar=true;
+}
 //LISTADO______________________________________________________________________
+//REQUEST______________________________________________________________________
+
+//REQUEST______________________________________________________________________
 include_once('inc/cabecera.inc.php'); //cargando cabecera 
 ?>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('input[type="radio"]').change(function(){
+    $(document).ready(function () {
+        $('input[type="radio"]').change(function () {
             $('#frmenvio').submit();
         });
     });
@@ -203,57 +258,61 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
         <div class="container carrito-datos">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8 my-4">
-                        <?php
+                    <?php
                         if($str_error){
                             echo $hM->get_alert_danger($str_error);
                         ?>
-                        <div class="mb-3"></div>
-                        <?php }else if($str_success){
+                    <div class="mb-3"></div>
+                    <?php }else if($str_success){
                             echo $hM->get_alert_success($str_success);
                         ?>
-                        <div class="mb-3"></div>
-                        <?php } ?>
-                        <div class="info-datos">
-                            <div class="info-resumen">
-                                <div class="d-flex justify-content-between">
-                                    <h5>Dirección de entrega</h5>
-                                    <a data-toggle="modal" data-target="#modalDireccionSeleccionar">Seleccionar otra dirección</a>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modalDireccionSeleccionar" tabindex="-1" role="dialog" aria-labelledby="modalDireccionSeleccionarLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header info-datos">
-                                                <h5 class="modal-title" id="modalDireccionSeleccionarLabel">Añadir y/o Editar dirección de Envio</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="" method="post">
-                                                <div class="modal-body">
-                                                    <?php echo $oldad; ?>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                                </div>
-                                            </form>
+                    <div class="mb-3"></div>
+                    <?php } ?>
+                    <div class="info-datos">
+                        <div class="info-resumen">
+                            <div class="d-flex justify-content-between">
+                                <h5>Dirección de entrega</h5>
+                                <a data-toggle="modal" data-target="#modalDireccionSeleccionar">Seleccionar otra
+                                    dirección</a>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalDireccionSeleccionar" tabindex="-1" role="dialog"
+                                aria-labelledby="modalDireccionSeleccionarLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header info-datos">
+                                            <h5 class="modal-title" id="modalDireccionSeleccionarLabel">Añadir y/o
+                                                Editar dirección de Envio</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                                        <form action="" method="post">
+                                            <div class="modal-body">
+                                                <?php echo $oldad; ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div>
-                                    <?php echo $old; ?>
-                                </div>
-                                <div class="botones mt-3">
-                                    <button id="btndireccion" class="btnAdddireccion btn btn-lg" data-toggle="modal" data-target="#modalDireccion">+ Añadir dirección de envío</button>
-                                </div>
+                            </div>
+                            <div>
+                                <?php echo $old; ?>
+                            </div>
+                            <div class="botones mt-3">
+                                <button id="btndireccion" class="btnAdddireccion btn btn-lg" data-toggle="modal"
+                                    data-target="#modalDireccion">+ Añadir dirección de envío</button>
                             </div>
                         </div>
-                        <div class="articulos-enviar">
-                            <div class="articulos-enviar-title">Envío de 1 artículo(s)</div>
-                            <div class="articulos-enviar-list-items">
-                                <?php echo $oca; ?>
-                                <!-- <div class="articulos-enviar-item">
+                    </div>
+                    <div class="articulos-enviar">
+                        <div class="articulos-enviar-title">Envío de 1 artículo(s)</div>
+                        <div class="articulos-enviar-list-items">
+                            <?php echo $oca; ?>
+                            <!-- <div class="articulos-enviar-item">
                                     <img src="//thumb.pccomponentes.com/w-85-85/articles/14/144765/a3.jpg" alt="">
                                     <div class="articulos-enviar-texto-info">
                                             Toshiba OCZ TR200 SSD 240GB SATA3
@@ -264,21 +323,23 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                                             </div>
                                     </div>
                                 </div> -->
-                            </div>
                         </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="modalDireccionLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header info-datos">
-                                        <h5 class="modal-title" id="modalDireccionLabel">Añadir y/o Editar dirección de Envio</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form action="" method="post">
-                                        <div class="modal-body">
-                                            <?php
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="modalDireccionLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header info-datos">
+                                    <h5 class="modal-title" id="modalDireccionLabel">Añadir y/o Editar dirección de
+                                        Envio</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="" method="post">
+                                    <div class="modal-body">
+                                        <?php
                                                 echo $iM->get_input_hidden('id_carrito', $id_carrito);
                                                 echo $iM->get_input_text('nombre_usuario', $nombre, 'form-control', '', 'Nombre');
                                                 echo $iM->get_input_text('apellidos_usuario', $apellidos, 'form-control', '', 'Apellidos');
@@ -287,20 +348,20 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                                                 echo $iM->get_input_text('poblacion_usuario', $poblacion, 'form-control', '', 'Población');
                                                 echo $iM->get_input_text('movil_usuario', $movil, 'form-control', '', 'Móvil');
                                             ?>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="info-datos transporte">
-                            <div class="info-resumen">
-                                <?php echo $otransporte; ?>
-                            </div>
+                    </div>
+                    <div class="info-datos transporte">
+                        <div class="info-resumen">
+                            <?php echo $otransporte; ?>
                         </div>
+                    </div>
                 </div>
                 <div class="pedido show col-12 col-md-12 col-lg-4 my-4">
                     <div class="info-pago">
@@ -311,25 +372,29 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
                                         <div class="d-flex flex-column">
                                             <strong class="w-100">
                                                 <span>IVA (21%)</span>
-                                                <span data-precio-total class="pull-xs-right"><?php echo round($sumaTotal*$iva,2); ?> €</span>
+                                                <span data-precio-total class="pull-xs-right">
+                                                    <?php echo round($sumaTotal*IVA_GENERAL,2); ?> €</span>
                                             </strong>
                                             <strong class="w-100">
                                                 <span>Gastos de envío</span>
-                                                <span data-precio-total class="pull-xs-right"><?php echo $precioEnvio; ?> €</span>
+                                                <span data-precio-total class="pull-xs-right">
+                                                    <?php echo $precioEnvio; ?> €</span>
                                             </strong>
                                         </div>
                                     </div>
                                     <div class="ticket-pago_total">
                                         <strong class="w-100">
                                             <?php echo $lng['experiencia-carrito'][7]; ?>
-                                            <span data-precio-total class="pull-xs-right"><?php echo ($sumaTotal+$precioEnvio); ?> €</span>
+                                            <span data-precio-total class="pull-xs-right">
+                                                <?php echo ($sumaTotal+$precioEnvio); ?> €</span>
                                         </strong>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <form method="post" action="">
-                            <button type="submit" name="btnPedido" class="btn bg-blue-ysana btn-lg btn-block mt-2 text-light">
+                            <button id="btnPagar" type="submit" name="btnPedido" <?php echo (!$precioEnvio) ?
+                                'disabled' : '' ; ?> class="btn bg-blue-ysana btn-lg btn-block mt-2 text-light">
                                 <?php echo $lng['experiencia-carrito'][9]; ?></button>
                         </form>
                     </div>
@@ -338,7 +403,25 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
         </div>
     </div>
 
-
+    <div class="login_form d-none">
+        <form action="<?php echo URL_PASARELA; ?>" method="post" id="form_gateway" name="form_gateway">
+            <input type="hidden" name="Ds_SignatureVersion" value="<?php echo $Ds_version; ?>" />
+            <input type="hidden" name="Ds_MerchantParameters" value="<?php echo $Ds_params; ?>" />
+            <input type="hidden" name="Ds_Signature" value="<?php echo $Ds_signature; ?>" />
+                <input type="submit" class="btn_aceptar" style="padding:4px 22px;max-width:200px;margin-left:auto;margin-right:auto;"
+                    value="Aceptar" />
+        </form>
+    </div>
+    
+    <?php
+        if($cargar){
+            echo '<script>
+            $(document).ready(function () {
+                $("#form_gateway").submit();
+            });
+        </script>';
+        }
+    ?>
     <?php include_once('inc/footer.inc.php'); ?>
 </body>
 

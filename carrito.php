@@ -5,6 +5,7 @@ $uM = load_model('usuario');
 $aM = load_model('articulos');
 $iM = load_model('inputs');
 $cM = load_model('carrito');
+$hM = load_model('html');
 
 $id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '';
 $carrito_compra = array('123','1234');
@@ -105,8 +106,25 @@ include_once('inc/cabecera.inc.php'); //cargando cabecera
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8 my-4">
                     <div class="carrito p-3">
+                        <div class="<?php echo (isset($_GET['compra']) ? 'pb-3' : ''); ?>">
+                        <?php
+                        if(isset($_GET['compra'])){
+                            if($_GET['compra']=='ok'){
+                                echo $hM->get_alert_success("Pago realizada con éxito!");
+                            }else if($_GET['compra']=='ko'){
+                                echo $hM->get_alert_danger("El pago no se ha podido realizar");
+                            }
+                        }
+                        ?>
+                        </div>
                         <h1 class="h3 m-b-1">
-                            <strong>(<?php echo $qttCarrito-1 ?>)</strong>
+                            <strong>(<?php
+                            if($qttCarrito==0){
+                                echo '0';
+                            }else{
+                                echo $qttCarrito-1;
+                            }
+                            ?>)</strong>
                             <?php echo $lng['experiencia-carrito'][0]; ?>
                             <strong> <?php echo $lng['experiencia-carrito'][1]; ?></strong>
                         </h1>

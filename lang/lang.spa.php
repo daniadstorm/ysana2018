@@ -48,6 +48,10 @@ $lng['index'][21] = 'Le informamos que podrá revocar en cualquier momento el co
 //clubysana.php_________________________________________________________________________________
 $lng['clubysana']['ttl'] = 'PRONTO EN YSANA<sup>®</sup>';
 $lng['clubysana']['txt'] = 'Muy pronto lanzaremos el Club Ysana para todas aquellas personas que desean practicar el atuocuidado y sentirse bien.<br>La primera comunidad online en la que compartir tus inquietudes, además de obtener consejos personalizados de farmacéuticos y coachs profesionales.';
+$lng['clubysana']['txt'] = 'Muy pronto lanzaremos el Club Ysana para todas aquellas personas que desean practicar el atuocuidado y sentirse bien.<br>La primera comunidad online en la que compartir tus inquietudes, además de obtener consejos personalizados de farmacéuticos y coachs profesionales.';
+$lng['clubysana'][0] = 'Únete ahora al Club Ysana y enlaza con la vida sana. La primera comunidad online orientada al autocuidado y los hábitos de vida saludables, donde podrás compartir tus inquietudes, obtener consejos personalizados de farmacéuticos y coachs profesionales, obtener premios, acceder a muestras de producto en primicia, compartir experiencias y, por supuesto, mejorar tus hábitos de vida de manera constante.';
+$lng['clubysana'][1] = 'Unirme al Club Ysana®';
+$lng['clubysana'][2] = 'Ver más';
 //clubysana.php_________________________________________________________________________________
 
 //productos.php_____________________________________________________________________________________
@@ -72,6 +76,13 @@ $lng['productos_ysana'][0] = 'Elige el tuyo';
 $lng['productos_ysana'][1] = 'Puedes elegir entre recibir en casa uno de nuestros Pack Experiencia o recoger el producto Ysana® de tu preferencia en tu farmacia más cercana.';
 $lng['productos_ysana'][2] = 'Elige el producto principal de tu pack y nosotros los complementamos con los artículos que mejorarán sus resultados. Así tendrás una experiencia completa y descubrirás todos los beneficios de enlazar con la vida sana. ¡Pídelo ahora y recíbelo en casa!';
 $lng['productos_ysana'][3] = 'Reserva un producto Ysana®, recógelo en tu farmacia más cercana, y no lo pagues hasta el momento de la recogida.';
+$lng['productos_ysana'][4] = 'Usos';
+$lng['productos_ysana'][5] = 'Información Adicional';
+$lng['productos_ysana'][6] = 'Valoraciones';
+$lng['productos_ysana'][7] = 'Comprar Ahora';
+$lng['productos_ysana'][8] = 'Añadir a la Cesta';
+$lng['productos_ysana'][9] = 'Cantidad';
+
 //productos_ysana___________________________________________________________________________________
 
 //footer.php_____________________________________________________________________________________

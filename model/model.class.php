@@ -30,6 +30,12 @@ class Model {
         
         return $this->link_bd->real_escape_string($str);
     }
+
+    //autocommit
+    function ac($val){
+        if (!$this->link_bd) $this->conectar_bd();
+        $this->link_bd->autocommit($val);
+    }
     
     function safe_show($v) {
         return htmlspecialchars(stripslashes($v));
@@ -84,6 +90,12 @@ class Model {
     function mysql_datetime_to_datetime($datetime) {
         $date = strtotime($datetime);
         return date('d/m/Y H:i:s', $date);
+    }
+
+    //Rellenar a la izquierda con zeros para realizar factura redsys
+    function zerofill($valor, $longitud){
+        $res = str_pad($valor, $longitud, '0', STR_PAD_LEFT);
+        return $res;
     }
     
     function get_formatted_price($precio) {

@@ -33,7 +33,7 @@ if (isset($_POST['nombre_usuario'])) { //si viene de submit de login
     }
 }
 //POST__________________________________________________________________________
-echo '<pre>'.print_r($_POST).'</pre>';
+/* echo '<pre>'.print_r($_POST).'</pre>'; */
 //CONTROL_______________________________________________________________________
 if (isset($_SESSION['id_tipo_usuario'])) { //si hay login
     switch ($_SESSION['id_tipo_usuario']) {

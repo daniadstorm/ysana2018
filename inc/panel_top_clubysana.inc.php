@@ -31,7 +31,7 @@ $arr_idioma = array(
                                 <a href="<?php echo $ruta_inicio;?>login?unlogin" class="bienvenido">Cerrar sesión</a>
                                 <span class="vl"></span>
                             <?php } ?>
-                            <form action="">
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                             <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -55,7 +55,7 @@ $arr_idioma = array(
                                 <?php echo $lng['panel_top'][2]; ?>
                             </a>
                             <span class="vl"></span>
-                            <form action="">
+                            <form action="" method="post">
                                 <?php echo $uM->get_combo_idioma($arr_idioma, 'idioma_seleccionado', $lang, '', true); ?>
                             </form>
                         </div>

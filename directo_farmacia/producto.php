@@ -17,6 +17,8 @@ $descripcion = 'N/A';
 $stock=0;
 $precio = 'N/A';
 $total_stock = 0;
+$usosEditor = '';
+$infoEditor = '';
 
 $consejo_producto = array(
     array('titulo'=>'Titulo','des'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut commodo quam, id aliquet sem. Cras interdum sed elit quis malesuada. Vivamus mauris enim, fermentum ut tempor nec, ultrices ac nisi. Vestibulum facilisis, sapien ut faucibus elementum, nibh enim vestibulum orci, sed auctor ante enim eget tortor. Ut vel faucibus est, quis dictum arcu. Etiam eu justo quis felis ornare mattis. Nulla facilisi. Etiam arcu diam, feugiat aliquam iaculis et, scelerisque a est. Donec nisi leo, cursus vitae purus nec, ultrices fermentum quam.')
@@ -44,6 +46,21 @@ $id_producto = (isset($_GET['id'])) ? $_GET['id'] : '';
 //GET__________________________________________________________________________
 
 //POST__________________________________________________________________________
+/* echo '<pre>';
+print_r($_POST);
+echo '</pre>'; */
+if(isset($_POST['enviarZoho'])){
+    $uM->add_post_zoho('https://creator.zoho.eu/api/pharmalink/json/ysanaapp/form/usuarios/record/add/', array(
+        'authtoken' => AUTHTOKEN,
+        'scope' => SCOPE,
+        'id_usuario' => $_POST['id_usuario'],
+        'nombre' => $_POST['nombre'],
+        'nombre_categoria' => $_POST['nombre_categoria'],
+        'descripcion' => $_POST['descripcion'],
+        'precio' => $_POST['precio'],
+        'tipo_tienda' => $_POST['tipo_tienda']
+    ));
+}
 if(isset($_POST['btnCesta']) && $id_usuario>0){
     if($cM->get_articulo_carrito($id_usuario, $_POST['id_articulo'])>0){
         $cM->sumarArticulo($id_usuario, $_POST['id_articulo']);
@@ -53,6 +70,41 @@ if(isset($_POST['btnCesta']) && $id_usuario>0){
 }else if(isset($_POST['btnCesta']) && $id_usuario==0){
     header('Location: '.$ruta_inicio.'login');
 }
+if(isset($_POST['editorusos'])){
+    if(!$aM->existeuso($id_producto)){
+        $rau = $aM->addusos($id_producto, $_POST['editorusos']);
+        if($rau){
+            echo 'bien add';
+        }else{
+            echo 'todo mal add';
+        }
+    }else{
+        $rau = $aM->updateusos($id_producto, $_POST['editorusos']);
+        if($rau){
+            echo 'bien update';
+        }else{
+            echo 'todo mal update';
+        }
+    }
+}
+if(isset($_POST['editorinfo'])){
+    if(!$aM->existeinfo($id_producto)){
+        $rau = $aM->addinfo($id_producto, $_POST['editorinfo']);
+        if($rau){
+            echo 'bien add';
+        }else{
+            echo 'todo mal add';
+        }
+    }else{
+        $rau = $aM->updateinfo($id_producto, $_POST['editorinfo']);
+        if($rau){
+            echo 'bien update';
+        }else{
+            echo 'todo mal update';
+        }
+    }
+}
+
 //POST__________________________________________________________________________
 
 //LISTADO______________________________________________________________________
@@ -69,22 +121,16 @@ if($id_producto!=''){
             array_push($imgs_producto, $frgia['img']);
         }
     }
-    $rgua = $aM->get_usos_articulo($id_articulo, $_SESSION['lang']);
-    if($rgua){
-        while($frgua = $rgua->fetch_assoc()){
-            array_push($usos_prod, array(
-                'etiqueta' => $frgua['etiqueta'],
-                'contenido' => $frgua['contenido']
-            ));
+    $rgu = $aM->getusos($id_producto);
+    if($rgu){
+        while($frgu = $rgu->fetch_assoc()){
+            $usosEditor .= $frgu['contenido'];
         }
     }
-    $rgi = $aM->get_informacion($id_articulo, $_SESSION['lang']);
+    $rgi = $aM->getinfo($id_producto);
     if($rgi){
         while($frgi = $rgi->fetch_assoc()){
-            array_push($info_producto, array(
-                'etiqueta' => $frgi['etiqueta'],
-                'contenido' => $frgi['contenido']
-            ));
+            $infoEditor .= $frgi['contenido'];
         }
     }
     for($i=0;$i<=$stock;$i++){
@@ -198,13 +244,28 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                             </h1>
                             <!-- <p>información adicional</p> -->
                             <form action="" method="post">
-                                <button class="btn btn-lg btn-color-5 mb-2 w-100">Comprar Ahora</button>
+                                <button class="btn btn-lg btn-color-5 mb-2 w-100"><?php echo $lng['productos_ysana'][7]; ?></button>
                                 <?php echo $iM->get_input_hidden('id_articulo', $id_articulo); ?>
-                                <button class="btn btn-lg btn-cesta mb-2 w-100" name="btnCesta">Añadir a la Cesta</button>
+                                <button class="btn btn-lg btn-cesta mb-2 w-100" name="btnCesta"><?php echo $lng['productos_ysana'][8]; ?></button>
                                 <div class="caja d-flex">
-                                    <label class="mr-3">Cantidad</label>
+                                    <label class="mr-3"><?php echo $lng['productos_ysana'][9]; ?></label>
                                     <?php echo $iM->get_select("cantidad_productos", 0, $cantidad_productos,''); ?>
                                 </div>
+                            </form>
+                            <form method="post" class="mb-0">
+                                <?php
+                                if(isset($_SESSION['id_tipo_usuario'])){
+                                    if($_SESSION['id_tipo_usuario']==10){
+                                        echo $iM->get_input_hidden("id_usuario", $id_usuario);
+                                        echo $iM->get_input_hidden("nombre", $nombre);
+                                        echo $iM->get_input_hidden("nombre_categoria", $nombre_categoria);
+                                        echo $iM->get_input_hidden("descripcion", $descripcion);
+                                        echo $iM->get_input_hidden("precio", $precio);
+                                        echo $iM->get_input_hidden("tipo_tienda", "directofarmacia");
+                                        echo '<button name="enviarZoho" class="btn btn-outline-info">Enviar a Zoho</button>';
+                                    }
+                                }
+                                ?>
                             </form>
                         </div>
                         <?php }else{ ?>
@@ -238,32 +299,42 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                     <nav id="nav-info">
                         <div class="nav">
                             <a class="nav-item nav-link active" id="nav-usos-tab" data-toggle="tab" href="#nav-usos" role="tab" aria-controls="nav-usos"
-                                aria-selected="true">Usos</a>
+                                aria-selected="true"><?php echo $lng['productos_ysana'][4]; ?></a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
-                                aria-selected="false">Información Adicional</a>
+                                aria-selected="false"><?php echo $lng['productos_ysana'][5]; ?></a>
                             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
-                                aria-selected="false">Valoraciones</a>
+                                aria-selected="false"><?php echo $lng['productos_ysana'][6]; ?></a>
                         </div>
                     </nav>
                     <div class="tab-content mt-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-usos" role="tabpanel" aria-labelledby="nav-usos-tab">
-                            <?php foreach($usos_prod as $valor){
-                                echo '<div class="uso ml-2">';
-                                echo '<'.$valor['etiqueta'].'>'.$valor['contenido'].'</'.$valor['etiqueta'].'>';
-                                echo '</div>';
-                            }?>
+                            <div class="uso ml-2">
+                                <?php echo $usosEditor; ?>
+                            </div>
+                            <?php if(isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario']==10){ ?>
+                            <form method="post">
+                                <textarea id="editorusos" name="editorusos"></textarea>
+                                <div class="d-flex justify-content-end mt-2">
+                                    <button type="submit" class="btn btn-outline-secondary">Guardar</button>
+                                </div>
+                            </form>
+                            <?php } ?>
                         </div>
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <div class="row">
                                 <div class="col-md-6 h-100 d-flex flex-column align-items-center">
                                     <h5 class="text-center mt-2">Información Producto</h5>
                                     <div class="mt-3 w-100">
-                                        <?php foreach($info_producto as $valor){
-                                        echo '<div class="uso ml-2">';
-                                        echo '<'.$valor['etiqueta'].'>'.$valor['contenido'].'</'.$valor['etiqueta'].'>';
-                                        echo '</div>';
-                                    }?>
+                                        <?php echo $infoEditor; ?>
                                     </div>
+                                    <?php if(isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario']==10){ ?>
+                                    <form method="post">
+                                        <textarea id="editorinfo" name="editorinfo"></textarea>
+                                        <div class="d-flex justify-content-end mt-2">
+                                            <button type="submit" class="btn btn-outline-secondary">Guardar</button>
+                                        </div>
+                                    </form>
+                                    <?php } ?>
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <!-- bg-grayopacity-ysana -->
@@ -338,6 +409,28 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
             </div>
         </div>
     </div>
+    <?php
+    if(isset($_SESSION['id_tipo_usuario'])){
+        if($_SESSION['id_tipo_usuario']==10){
+            echo '<script type="text/javascript">
+            $(document).ready(function () {
+                $("#editorusos").summernote({
+                    height: 300,
+                    minHeight: null,
+                    maxHeight: null
+                });
+                $("#editorusos").summernote(\'code\', `'.$usosEditor.'`);
+                $("#editorinfo").summernote({
+                    height: 300,
+                    minHeight: null,
+                    maxHeight: null
+                });
+                $("#editorinfo").summernote(\'code\', `'.$infoEditor.'`);
+            });
+        </script>';
+        }
+    }
+    ?>
     <?php include_once('../inc/footer.inc.php'); ?>
 </body>
 

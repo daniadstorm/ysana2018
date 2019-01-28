@@ -86,10 +86,10 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                     <nav>
                         <ol class="breadcrumb bg-white pl-0">
                             <li class="breadcrumb-item">
-                                <a href="#">Ysana</a>
+                                <a href="<?php echo $ruta_inicio; ?>">Ysana</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Club Ysana</a>
+                                <a href="<?php echo $ruta_inicio; ?>clubysana">Club Ysana</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Tu Area Personal</li>
                         </ol>
@@ -132,10 +132,10 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
                     <nav>
                         <ol class="breadcrumb bg-white pl-0">
                             <li class="breadcrumb-item">
-                                <a href="#">Ysana</a>
+                                <a href="<?php echo $ruta_inicio; ?>">Ysana</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Club Ysana</a>
+                                <a href="<?php echo $ruta_inicio; ?>clubysana">Club Ysana</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Tu Experiencia</li>
                         </ol>

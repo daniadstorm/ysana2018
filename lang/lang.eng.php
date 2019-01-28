@@ -8,6 +8,7 @@ $lng['ttl_idioma'] = 'Language';
 $lng['panel_top'][0] = 'Welcome to Ysana® Healthy Lifestyle';
 $lng['panel_top'][1] = 'Log in';
 $lng['panel_top'][2] = 'Create';
+$lng['panel_top'][3] = 'Welcome to Ysana® Club';
 //panel_top_________________________________________________________________________________________
 
 //navbar_inicio_____________________________________________________________________________________
@@ -20,8 +21,8 @@ $lng['navbar_inicio'][5] = 'Find your Ysana® prodcut';
 //navbar_inicio_____________________________________________________________________________________
 
 //index.php_____________________________________________________________________________________
-$lng['index'][0] = 'Who is Ysana® Healthy Lifestyle?';
-$lng['index'][1] = 'Ysana® es una marca del laboratorio Pharmalink dedicada al bienestar de las personas. Nuestro equipo profesional y dinámico está comprometido con la innovación constante para incorporar extractos naturales a productos que ayuden a las personas a mantener un estilo de vida saludable.';
+$lng['index'][0] = 'Who is Ysana® Vida Sana?';
+$lng['index'][1] = 'Ysana® is a Pharmalink Lab’s brand, committed to self-health care and well-being. We’ve been innovating for over ten years and incorporating natural extracts to food supplements and medical devices which help to prevent diseases and keep you healthy.';
 $lng['index'][2] = 'Novedades';
 $lng['index'][3] = 'AdelgaYsana Forte';
 $lng['index'][4] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer convallis id sapien a dapibus. Aenean efficitur nisi at fringilla molestie.';
@@ -47,6 +48,9 @@ $lng['index'][21] = 'Le informamos que podrá revocar en cualquier momento el co
 //clubysana.php_________________________________________________________________________________
 $lng['clubysana']['ttl'] = 'SOON IN YSANA<sup>®</sup>';
 $lng['clubysana']['txt'] = 'Very soon we will launch Club Ysana for all those people who want to practice caring and feel good.<br>The first online community where you can share your concerns, as well as get personalized advice from pharmacists and professional coaches.';
+$lng['clubysana'][0] = 'We will launch soon the Club Ysana for all of you out there wanting to feel good and looking for usefull self-care tips. The first online community where you&#39;ll be able to share your concerns, in addition to obtaining personalized advice from pharmacists and professional coaches.';
+$lng['clubysana'][1] = 'Join the Ysana Club®';
+$lng['clubysana'][2] = 'See more';
 //clubysana.php_________________________________________________________________________________
 
 //productos.php_____________________________________________________________________________________
@@ -54,13 +58,13 @@ $lng['productos'][0] = 'All Ysana® Vida Sana products';
 $lng['productos'][1] = 'YSANA® PUTS THE GREAT THERAPEUTIC EXPERIENCE AT THE INTERNATIONAL LEVEL OF PHARMALINK LAB AT THE SERVICE OF ITS NATURAL PRODUCTS, FOR YOUR CARE AND YOURS.';
 $lng['productos'][2] = 'A new generation of technologically natural food supplements in intelligent controlled-release capsules.';
 $lng['productos'][3] = 'Eficaps®';
-$lng['productos'][4] = 'Products created to care for and improve women\'s daily life, designed with them in mind.';
+$lng['productos'][4] = 'Products created to care and improve women&#39;s daily life, designed thinking about them.';
 $lng['productos'][5] = 'Women';
-$lng['productos'][6] = 'The line designed to help your body and mind maintain its recommended natural state and embrace a healthy lifestyle.';
+$lng['productos'][6] = 'The product line designed to help to maintain body and mind natural wellbeing and embrace a healthy lifestyle.';
 $lng['productos'][7] = 'Self-care';
 $lng['productos'][8] = 'Our Senior products are formulated to help our elders lead a full and energetic lifestyle.';
 $lng['productos'][9] = 'Senior';
-$lng['productos'][10] = 'The Free Nose® range consolidated in the cleaning, treatment, and hydration of the respiratory system. Because the natural thing is to feel good, breathe.';
+$lng['productos'][10] = 'The Free Nose® range consolidated in cleansing, treating and hydrating the respiratory system. Because the natural is to feel good, breathe.';
 $lng['productos'][11] = 'Breathe';
 $lng['productos'][12] = 'The series of products designed to take care of the little ones in the most natural way.';
 $lng['productos'][13] = 'Kids';
@@ -69,28 +73,35 @@ $lng['productos'][13] = 'Kids';
 //productos_ysana___________________________________________________________________________________
 $lng['productos_ysana'][0] = 'CHOOSE YOUR PURCHASING METHOD';
 $lng['productos_ysana'][1] = 'You can choose between receiving one of our Experience Packs at home or picking up any Ysana® product of your choice at your nearest pharmacy.';
-$lng['productos_ysana'][2] = 'Choose the main product for your pack and we\'ll complement it with articles that will improve your results. This way, you\'ll have a complete experience and discover all the benefits of connecting with a healthy lifestyle. Order now and receive yours at home!';
-$lng['productos_ysana'][3] = 'Preorder any Ysana® product, pick it up at your nearest pharmacy and don\'t pay  until pickup day.';
+$lng['productos_ysana'][2] = 'Choose one of the Ysana ® Experience Pack, combining one of your products plus a complement that will improve your results. This home!';
+$lng['productos_ysana'][3] = 'way you will have a complete experience and discover all the benefits of linking with healthy life. Order now and receive it at Preorder any Ysana® product, pick it up at your nearest pharmacy and don&#39;t pay until pickup day.';
+$lng['productos_ysana'][4] = 'Uses';
+$lng['productos_ysana'][5] = 'Supplementary Information';
+$lng['productos_ysana'][6] = 'Valuations';
+$lng['productos_ysana'][7] = 'Buy now';
+$lng['productos_ysana'][8] = 'Add to Cart';
+$lng['productos_ysana'][9] = 'Amount';
+
 //productos_ysana___________________________________________________________________________________
 
 //footer.php_____________________________________________________________________________________
 $lng['footer'][0] = 'About Ysana®';
 $lng['footer'][1] = 'Values';
-$lng['footer'][2] = 'Compañía';
-$lng['footer'][3] = 'Company';
-$lng['footer'][4] = 'Ethical code';
-$lng['footer'][5] = 'Press Room';
+$lng['footer'][2] = 'Company';
+$lng['footer'][3] = 'Commitment';
+$lng['footer'][4] = 'Code of Ethics';
+$lng['footer'][5] = 'Pressroom';
 $lng['footer'][6] = 'Press';
 $lng['footer'][7] = 'News';
 $lng['footer'][8] = 'Vídeos';
 $lng['footer'][8] = 'Videos';
-$lng['footer'][9] = 'Graphic material';
+$lng['footer'][9] = 'Graphics';
 $lng['footer'][10] = 'Policies';
 $lng['footer'][11] = 'Legal warning';
 $lng['footer'][12] = 'Privacy Policy';
 $lng['footer'][13] = 'Cookies policy';
-$lng['footer'][14] = 'Sales policy';
-$lng['footer'][15] = 'Club Ysana';
+$lng['footer'][14] = 'Online Shop Policy';
+$lng['footer'][15] = 'Ysana Club Logo';
 $lng['footer'][16] = 'Products';
 //legal---------------------------------------------
 //cookies accept--
@@ -223,21 +234,21 @@ $lng['experiencia-carrito'][8] = 'MAKE AN ORDER';
 //experiencia/carrito.php_____________________________________________________________________________________
 
 //quienes-somos.php___________________________________________________________________________________________
-$lng['quienes-somos'][0] = 'Who is Ysana® Vida Sana (Healthy Lifestyle)?';
+$lng['quienes-somos'][0] = 'WHO IS YSANA® VIDA SANA?';
 $lng['quienes-somos'][1] = 'Our values';
 $lng['quienes-somos'][2] = 'The company';
 $lng['quienes-somos'][3] = 'Ysana® Commitment';
-$lng['quienes-somos'][4] = 'Our ethical code';
+$lng['quienes-somos'][4] = 'Our code of ethics';
 $lng['quienes-somos'][5] = 'Who is Ysana® Vida Sana (Healthy Lifestyle)?';
-$lng['quienes-somos'][6] = 'Ysana® is a brand of the Pharmalink Lab. Pharmalink is a company committed to design, develop and produce formulations for the well-being of people. We are driven by innovation, which is why we combine technology and nature in all our products, incorporating natural extracts to food supplements and health products that contribute to a healthy lifestyle.';
+$lng['quienes-somos'][6] = 'Ysana® is a Pharmalink Lab’s brand, committed to designing, developing and producing formulations for self-care and well-being. Driven by the innovation we combine technology and nature in all our products, incorporating natural extracts to food supplements and medical devices that contribute to a healthy lifestyle. <br>Ysana® thinks about the whole family, that’s why we&#39;ve developed a wide range of products that help everyone feel better thanks natural ingredients properties and the latest scientific innovation.';
 $lng['quienes-somos'][7] = 'Ysana® thinks about the whole family, that is why we have developed a wide range of products that help everyone feel better thanks to the properties of our natural ingredients and the latest scientific innovation.';
 $lng['quienes-somos'][8] = 'Our Values';
 $lng['quienes-somos'][9] = 'Innovation, Commitment, Integrity, Teamwork, and Trust';
 $lng['quienes-somos'][10] = 'The company';
-$lng['quienes-somos'][11] = 'With over 10 years of experience, Pharmalink is an international company specialized in the development and manufacture of innovative liquid formulations, food supplements in single-dose vials or oral sprays, as well as in sanitary products for respiratory use. Its technologically advanced products contribute to the well-being of people through natural origin solutions.';
-$lng['quienes-somos'][12] = 'Based in Barcelona (Parc Tecnològic del Vallès), Pharmalink has a production plant in Vilabella (Tarragona), of more than 10,000 m2, fully equipped with the most advanced technology for the manufacture of the following formats: Food Supplements in single-dose vials, extemporaneous*, Eficaps® technology, and oral spray. Regarding Medical Devices, it offers specialized areas for nasal aspirators for babies, pump sprays and bulk on valve sprays.<br>Pharmalink products are present throughout Europe, North Africa, Middle East, Asia, and Latin America. The Pharmalink portfolio is available through its partners, who operate in more than 55 countries around the world.';
+$lng['quienes-somos'][11] = 'Pharmalink is a worldwide company with over 10 years of experience, specialized in developing and manufacturing innovative liquid formulations, single-dose vials and oral spray food supplements, as well as medical devices for respiratory applications. Our technologically advanced products contribute to the whole family’s well-being through natural origin solutions.';
+$lng['quienes-somos'][12] = 'Based in Barcelona (Parc Tecnològic del Vallès), Pharmalink has an over 10.000m production plant in Vilabella, Tarragona, fully equipped with the most advanced technology to manufacture the following formats: single-dose vial food supplements, extemporaneous vials, Eficaps® technology, and oral sprays. Regarding Medical Devices, we count over specialized areas for paediatric nasal aspirators, pump sprays and bulk on valve nasal sprays developments.';
 $lng['quienes-somos'][13] = 'Ysana® Commitment';
-$lng['quienes-somos'][14] = 'At Ysana®, we base our work on quality commitment, constant innovation of our products, all based on natural principles, our own code of transparency and communication, as well as rigorous compliance with legal standards.';
+$lng['quienes-somos'][14] = 'At Ysana®, we base our work on quality commitment, constant innovation in our formulations, always based on natural principles, our own transparency and communication code, as well as a rigorous compliance towards legal standards.';
 $lng['quienes-somos'][15] = 'Our ethical code';
 $lng['quienes-somos'][16] = 'Ysana® Healthy Lifestyle is an endorsed brand by the value chain of the Pharmalink Lab, whose processes comply with a demanding code of quality and commitment.';
 //quienes-somos.php___________________________________________________________________________________________

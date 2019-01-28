@@ -31,7 +31,7 @@ if($rgaa){
                     <header class="tarjeta-articulo_info">
                         <h3 class="categoria">Ysana®</h3>
                         <h3 class="nombre">'.$frgaa['nombre'].'</h3>
-                        <h3 class="precio">'.$frgaa['precio'].'</h3>
+                        <h3 class="precio">'.$frgaa['precio'].'€</h3>
                     </header>
                     <header class="tarjeta-articulo_extras">
                         <div class="puntuacion">
@@ -68,7 +68,7 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
     <div class="contenedor">
         <div class="position-relative">
             <div class="videoysana">
-                <video class="video-inline" autoplay loop muted src="<?php echo $ruta_inicio; ?>img/cabecera-farmacia-directa.mp4"></video>
+                <video class="video-inline" autoplay loop muted src="<?php echo $ruta_inicio; ?>img/cabecera-farmacia-directa_<?php echo $_SESSION['lang']; ?>.mp4"></video>
             </div>
         </div>
     </div>
@@ -106,10 +106,10 @@ include_once('../inc/cabecera.inc.php'); //cargando cabecera
         <nav>
             <ol class="breadcrumb bg-white pl-0">
                 <li class="breadcrumb-item">
-                    <a href="#">Ysana</a>
+                    <a href="<?php echo $ruta_inicio; ?>">Ysana</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="<?php echo $ruta_inicio; ?>">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Directo a Farmacia</li>
             </ol>
